@@ -1,0 +1,13 @@
+{
+    "name": "info/sivico19",
+    "description": "Informasi Dewo 19",
+    "authors": [
+        {
+            "name": "mfathony115",
+            "email": "mfathony115@gmail.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.15"
+    }
+}

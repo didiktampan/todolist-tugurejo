@@ -1,0 +1,350 @@
+nav {
+    position: sticky !important;
+    top: 0;
+}
+footer {
+    position: sticky !important;
+    bottom: 0;
+}
+.chartdiv {
+    width: 100%;
+    height: 500px;
+}
+.uppercase-text{
+    text-transform: uppercase;
+}
+.opensans-font {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.widget-user .widget-user-header{
+    height: 300px;
+    padding: 2rem;
+}
+.widget-user .card-footer{
+    padding-top: 0px;
+    height: 150px;
+}
+.widget-user .footer-new{
+    padding-top: 0px;
+    height: 120px;
+}
+.health{
+    background: linear-gradient(35deg, #84db98, #28a745);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 25s ease infinite;
+    -moz-animation: AnimationName 25s ease infinite;
+    animation: AnimationName 25s ease infinite;
+}
+.text-health{
+    color: #28a745;
+}
+.treated{
+    background: linear-gradient(35deg, #fdb32d, #ce8705);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 25s ease infinite;
+    -moz-animation: AnimationName 25s ease infinite;
+    animation: AnimationName 25s ease infinite;
+}
+.text-treated{
+    color: #ce8705;
+}
+.death{
+    background: linear-gradient(35deg, #ea949c, #dc3545);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 25s ease infinite;
+    -moz-animation: AnimationName 25s ease infinite;
+    animation: AnimationName 25s ease infinite;
+}
+.text-death{
+    color: #dc3545;
+}
+.reactive{
+    background: linear-gradient(36deg, #dd6f6f, #a52a2a);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 25s ease infinite;
+    -moz-animation: AnimationName 25s ease infinite;
+    animation: AnimationName 25s ease infinite;
+}
+.text-reactive{
+    color: #a52a2a;
+}
+.isoman{
+    background: linear-gradient(35deg, #c8a2a2,#808080,);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 25s ease infinite;
+    -moz-animation: AnimationName 25s ease infinite;
+    animation: AnimationName 25s ease infinite;
+}
+.text-isoman{
+    color: #808080;
+}
+.isorumdin{
+    background: linear-gradient(35deg, #9ba2c3, #6c84f1);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 25s ease infinite;
+    -moz-animation: AnimationName 25s ease infinite;
+    animation: AnimationName 25s ease infinite;
+}
+.text-isorum{
+    color: #6c84f1;
+}
+@-webkit-keyframes AnimationName {
+    0%{background-position:91% 0%}
+    50%{background-position:10% 100%}
+    100%{background-position:91% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:91% 0%}
+    50%{background-position:10% 100%}
+    100%{background-position:91% 0%}
+}
+@keyframes AnimationName {
+    0%{background-position:91% 0%}
+    50%{background-position:10% 100%}
+    100%{background-position:91% 0%}
+}
+.detail-health, .detail-health-iso{
+    font-size: 50px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Source Sans Pro', sans-serif;
+    padding-top: 8%;
+}
+.detail-health-isorum{
+    font-size: 50px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Source Sans Pro', sans-serif;
+  
+}
+.title-total {
+    position: relative;
+    font-size: 11em;
+    font-family: monospace;
+    font-weight: 600;
+}
+.title-persent{
+    position: relative;
+    left: 30%;
+    bottom: 25%;
+    font-size: 30px;
+}
+.number-health{
+    color: #28a745;
+}
+.number-treated{
+    color: #ce8705;
+}
+.number-death{
+    color: #dc3545;
+}
+.number-reactive{
+    color: #a52a2a;
+}
+.number-isoman{
+    color: #808080;
+}
+.number-isorumdin{
+    color: #6c84f1;
+}
+
+.radius-chart {
+    border-radius: 3.25rem;
+}
+.radius-chart-header {
+    border-top-right-radius: 3.25rem;
+    border-top-left-radius: 3.25rem;
+    padding-left: 50px;
+}
+.new-title {
+    float: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+.warning-new{
+    color: white;
+    background-color: #ce8705;
+}
+.separator {
+    border-right: 1px solid rgba(0,0,0,.125);
+}
+.round{
+    position: relative;
+    left: 15%;
+    top: 3%;
+    background-color: aqua;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+}
+.primary{
+    color: #007bff !important;
+}
+.title-subcase{
+    text-transform: uppercase;
+    font-size: 25px;
+}
+.total-subcase-round{
+    position: relative;
+    top: 20%;
+    font-size: 80px;
+    color: white;
+}
+.footer-title {
+    float: none;
+    font-size: 30px;
+    padding-top: 30px;
+}
+.footer-title-iso {
+    float: none;
+    font-size: 30px;
+    padding-top: 15px;
+}
+.total-rw {
+    font-size: 10em;
+}
+@media screen and (max-width: 320px){
+    .title-total{
+        font-size: 9em;
+    }
+    .title-persent{
+        bottom: 20%;
+    }
+    .detail-health, .detail-health-iso {
+        font-size: 35px;
+    }
+    .detail-health {
+        padding-top: 22%;
+    }
+    .radius-chart-header{
+        padding-left: 25px;
+        text-align: center !important;
+    }
+    .round{
+        left: 5%;
+    }
+    .title-subcase{
+        padding: 10px;
+    }
+}
+@media screen and ( min-width: 2560px){
+    .round {
+        left: 24%;
+    }
+}
+@media screen and ( max-width: 1440px){
+    .round {
+        left: 0%;
+    }
+}
+@media screen and (max-width: 1370px){
+    .detail-health-iso{
+        padding-top: 0;
+    }
+    .round{
+        left: -3%;
+    }
+    .footer-title-iso{
+        font-size: 29px;
+    }
+}
+@media (min-width: 1400px){
+    .container-total-case {
+        max-width: 1500px;
+    }
+    .container-chartrekap{
+        max-width: 1750px;
+    }
+}
+@media screen and ( max-width: 1024px){
+    .chartdiv{
+        height: 300px;
+    }
+    .round {
+        height: 130px;
+        width: 130px;
+    }
+    .total-subcase-round {
+        top: 0%;
+    }
+    .title-total{
+        font-size: 10em;
+    }
+    .detail-health-isorum{
+        padding-top: 8%;
+        font-size: 43px;
+    }
+    .detail-health, .detail-health-iso {
+        font-size: 43px;
+    }
+    .footer-title-iso, .footer-title{
+        font-size: 24px;
+    }
+}
+@media screen and ( max-width: 768px){
+    .title-total{
+        font-size: 6em;
+    }
+    .title-persent{
+        bottom: 15%;
+    }
+    .detail-health, .detail-health-iso, .detail-health-isorum {
+        font-size: 29px;
+    }
+    .title-subcase{
+        font-size: 18px;
+    }
+    .round{
+        height: 95px;
+        width: 95px;
+    }
+    .total-subcase-round{
+        font-size: 60px;
+    }
+}
+@media screen and ( max-width:425px){
+    .title-total{
+        font-size: 12em;
+    }
+    .detail-health, .detail-health-iso, .detail-health-isorum {
+        font-size: 40px;
+    }
+    .separator{
+        border-bottom: 1px solid rgba(0,0,0,.125);
+    }
+    .title-subcase{
+        font-size: 30px;
+    }
+    .round{
+        height: 135px;
+        width: 135px;
+        left: 27%;
+        top: 0;
+    }
+    .total-subcase-round{
+        font-size: 75px;
+        top: 10%;
+    }
+    .card-body{
+        overflow: auto;
+    }
+}
+.card-footer:hover{
+    background-color: lightcyan;
+}
+.carousel-indicators li{
+    background-color: #543fce;
+}
+/* @media screen and ( max-width: 320px){
+    .card-body{
+        overflow: auto;
+    }
+} */

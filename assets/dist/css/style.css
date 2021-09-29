@@ -1,0 +1,193 @@
+/* Style the form */
+ #regForm {
+    background-color: #ffffff;
+    margin: 0px auto;
+    padding: 0px;
+    width: 100%;
+    min-width: 300px;
+  }
+  
+  /* Style the input fields */
+  /* input {
+    padding: 10px;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+  } */
+  
+  /* Mark input boxes that gets an error on validation: */
+  input.invalid {
+    background-color: #ffdddd;
+  }
+  
+  .cardku {
+    background-color: #ffdddd;
+  }
+  /* Hide all steps by default: */
+  .tab {
+    display: none;
+  }
+  
+  /* Make circles that indicate the steps of the form: */
+  .step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+  }
+  
+  /* Mark the active step: */
+  .step.active {
+    opacity: 1;
+  }
+  
+  /* Mark the steps that are finished and valid: */
+  .step.finish {
+    background-color: #4CAF50;
+  }
+  
+  .btn-cari{
+    padding-top: 30px;
+  }
+  .img-people{
+    /* background-image: url('../../images/goodpeople.png'); */
+    position: absolute;
+    width: 600px;
+    height: 500px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    /* margin-left: 200px; */
+    left: 21%;
+    top: 33%;
+    right: 0;
+    bottom: 0;
+  }
+
+  @media(max-width: 1024px){
+    .img-people {
+      left: 16%;
+    }
+  }
+
+  
+  @media(max-width: 768px){
+    .img-people {
+      left: 4%;
+    }
+    .btn-cari{
+        padding-top:56px;
+    }
+  }
+
+  @media(max-width: 425px){
+    .img-people {
+        display:none;
+    }
+    .color-text{
+        background:none;
+    }
+  }
+  
+  @media(max-width: 599px){
+        .btn-cari {
+          padding-top: 0px;
+        }
+  }
+  .overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-y: hidden;
+    transition: 0.5s;
+    display: none;
+  }
+  
+  .overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    
+  }
+  .loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #dc3545;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    position: fixed;
+    z-index: 100;
+    right: 50%;
+    left: 45%;
+    top: 50%;
+    bottom: 0px;
+    display: block;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  /* Back to top button */
+  .back-to-top {
+    position: fixed;
+    display: none;
+    background: #18d26e;
+    color: #fff;
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    line-height: 1;
+    font-size: 16px;
+    border-radius: 50%;
+    right: 15px;
+    bottom: 15px;
+    transition: background 0.5s;
+    z-index: 11;
+  }
+  
+  .back-to-top i {
+    padding-top: 12px;
+    color: #fff;
+  }
+  
+  @media (max-width: 768px) {
+    .back-to-top {
+      bottom: 15px;
+    }
+    .loader{
+        left: 40%;
+    }
+  }
+
+  .color-text{
+    background:rgba(224, 224, 224, 0.88);
+  }
+
+  @media (max-width: 425px) {
+    .color-text{
+        background:none;
+    }
+    .loader{
+        left: 33%;
+    }
+  }
