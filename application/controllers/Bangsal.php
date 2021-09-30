@@ -8,22 +8,24 @@ class Bangsal extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        // if ($this->session->userdata('status_log') != TRUE) {
-        //     redirect('signin');
-        // }
+        if ($this->session->userdata('is_login') == FALSE) {
+            redirect('signin', 'refresh');
+        }
     }
 
     public function index()
     {
+
         $data['token'] = $token = AUTHORIZATION::private_token();
         $this->template->load('layouts/Layouts', 'dashboard/V_bangsal', $data);
+        $this->template->load('layouts/Layouts', 'dashboard/td_Dashboard', $data);
     }
 
     public function select2RS()
     {
-        $nama_rs = $this->input->get('search');
-        $kode_rs = $this->session->userdata('kode_rs');
-        $data = $this->bangsal->searchBangsal($nama_rs, $kode_rs);
+        $projectname = $this->input->get('search');
+        $projectid = $this->session->userdata('projectid');
+        $data = $this->bangsal->searchBangsal($projectname, $projectid);
         // $result = [];
         // foreach ($data as $key => $value) {
         //     $result[] = ['id' => $value->kode_bangsal, 'text' => $value->nama_bangsal];
@@ -33,10 +35,10 @@ class Bangsal extends CI_Controller
 
     public function dataBangsal()
     {
-        // $kode_rs = $this->input->get('kode_rs');
+        $projectid = $this->input->get('projectid');
         $final = [];
         $result = [];
-        $data = $this->bangsal->getBangsal();
+        $data = $this->bangsal->getBangsal($projectid);
         $nomor = 0;
         foreach ($data as $key => $value) {
             $nomor++;
@@ -44,11 +46,14 @@ class Bangsal extends CI_Controller
                 'nomor' => $nomor,
                 'milestoneid' => $value->MILESTONEID,
                 'milestonename' => $value->MILESTONENAME,
+                'projectname' => $value->PROJECTNAME,
                 'action' => '
                     <button class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="bottom" title="Edit"
                     id="btn-edit"
                     data-milestoneid="' . $value->MILESTONEID . '"
-                    data-milestonename="' . $value->MILESTONENAME . '">
+                    data-milestonename="' . $value->MILESTONENAME . '"
+                    data-projectid="' . $value->PROJECTID . '"
+                    data-projectname="' . $value->PROJECTNAME . '">
                         <i class="fa fa-edit"></i>
                     </button>
                     <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="bottom" title="Delete"

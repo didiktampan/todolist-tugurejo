@@ -7,8 +7,8 @@ class Bangsal_model extends CI_Model
 
 	public function buatID()
 	{
-		$ex = $this->db->select("MAX(milestoneid) AS id_max ")->from('bangsal');
-		// ->like('kode_rs', '0', 'both')->get();
+		$ex = $this->db->select("MAX(milestoneid) AS id_max ")->from('SDP_MILESTONE')
+			->like('projectid', '0', 'both')->get();
 		$id	= "";
 		if ($ex->num_rows() > 0) {
 			foreach ($ex->result() as $id) {
@@ -20,23 +20,25 @@ class Bangsal_model extends CI_Model
 		return $id;
 	}
 
-	public function searchBangsal($nama_bangsal, $kode_rs)
+	public function searchBangsal($milestonename, $projectid)
 	{
 		$this->db->select('*');
-		$this->db->like('nama_bangsal', $nama_bangsal, 'both');
-		if ($kode_rs !== 'all') {
-			$this->db->where('kode_rs', $kode_rs);
+		$this->db->like('MILESTONENAME', $milestonename, 'both');
+		if ($projectid !== '') {
+			$this->db->where('projectid', $projectid);
 		}
-		$data = $this->db->get('bangsal');
+		$data = $this->db->get('SDP_MILESTONE');
 		return $data->result();
 	}
 
-	public function getBangsal()
+	public function getBangsal($projectid)
 	{
-		// $this->db->select('a.MILESTONEID, a.MILESTONENAME')->from('SDP_MILESTONE a');
-		// $data = $this->db->where('MILESTONESTS', 0)->get();
-		// return $data->result();
-		$data = $this->db->select('MILESTONEID, MILESTONENAME')->from('SDP_MILESTONE')->get();
+		$this->db->select('a.MILESTONEID, a.MILESTONENAME, a.PROJECTID, b.PROJECTNAME')->from('SDP_MILESTONE a')
+			->join('SDP_PROJECT b', 'a.PROJECTID=b.PROJECTID', 'inner');
+		if ($projectid !== '') {
+			$this->db->where('a.projectid', $projectid);
+		}
+		$data = $this->db->get();
 		return $data->result();
 	}
 

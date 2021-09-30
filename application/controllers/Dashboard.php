@@ -30,19 +30,19 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
-        // if ($this->session->userdata('is_login') == FALSE) {
-        //     redirect('/', 'refresh');
-        // } else {
-        $this->data['pinjam'] = $this->db->query("SELECT TOP 10 * FROM sdp_complain  ORDER BY 'ID_TICKET' DESC");
-        // $this->data['komplen'] = $this->db->query("SELECT * FROM sdp_complain_card ORDER BY 'ID_TICKET'");
-        // echo json_encode($this->data['komplen']->result());
-        // return;
-        // $this->data['pinjam'] = $this->db->query(
-        //     "SELECT * FROM sdp_complain_card WHERE ID_TICKET => '$id'"
-        // );
-        // $this->data['komplen'] = $this->db->get_where('sdp_complain', ['ID_TICKET' => $id])->result_array();
-        $this->template->load('layouts/Layouts', 'dashboard/td_Dashboard', $this->data);
-        // }
+        if ($this->session->userdata('is_login') == FALSE) {
+            redirect('signin', 'refresh');
+        } else {
+            $this->data['pinjam'] = $this->db->query("SELECT TOP 10 * FROM sdp_complain  ORDER BY 'ID_TICKET' DESC");
+            // $this->data['komplen'] = $this->db->query("SELECT * FROM sdp_complain_card ORDER BY 'ID_TICKET'");
+            // echo json_encode($this->data['komplen']->result());
+            // return;
+            // $this->data['pinjam'] = $this->db->query(
+            //     "SELECT * FROM sdp_complain_card WHERE ID_TICKET => '$id'"
+            // );
+            // $this->data['komplen'] = $this->db->get_where('sdp_complain', ['ID_TICKET' => $id])->result_array();
+            $this->template->load('layouts/Layouts', 'dashboard/td_Dashboard', $this->data);
+        }
     }
 
 

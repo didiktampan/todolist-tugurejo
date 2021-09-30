@@ -18,7 +18,6 @@ class AuthCovid extends CI_Controller
 		// if ($this->session->userdata('is_login') == TRUE) {
 		// 	redirect('AuthCovid');
 		// }
-
 		$this->load->view('V_login');
 	}
 
@@ -75,7 +74,7 @@ class AuthCovid extends CI_Controller
 						'TIPEUSER' => $db->TIPEUSER
 					);
 					$this->session->set_userdata($data_login);
-					redirect('Bangsal');
+					redirect('Dashboard');
 				} else {
 					$this->session->set_flashdata('pesan', 'Login gagal: USPASS salah!');
 					redirect('/', 'refresh');

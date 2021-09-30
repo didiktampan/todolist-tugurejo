@@ -5,9 +5,9 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <h1>Milestone<?php
-                        $nama_rs = $this->session->userdata('nama_rs');
-                        $kode_rs = $this->session->userdata('kode_rs');
-                        echo $nama_rs; ?></h1>
+                        $projectname = $this->session->userdata('projectname');
+                        $projectid = $this->session->userdata('projectid');
+                        echo $projectname; ?></h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -44,15 +44,15 @@
                       <input type="hidden" name="milestoneid_edt" id="milestoneid_edt">
                     </div>
                   </div>
-                  <?php if ($kode_rs === 'all') { ?>
+                  <!-- <?php if ($projectid === '') { ?>
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Project</label>
-                        <select class="form-control select2" style="width: 100%;" id="kode_rs" name="kode_rs">
+                        <select class="form-control select2" style="width: 100%;" id="projectid" name="projectid">
                         </select>
                       </div>
                     </div>
-                  <?php } ?>
+                  <?php } ?> -->
                 </div>
               </div>
             </div>
@@ -84,6 +84,7 @@
                     <th>No.</th>
                     <th>ID Milestone</th>
                     <th>Milestone</th>
+                    <th>Project</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -93,6 +94,7 @@
                     <th>No.</th>
                     <th>ID Milestone</th>
                     <th>Milestone</th>
+                    <th>Project</th>
                     <th>Action</th>
                   </tr>
                 </tfoot>
@@ -219,10 +221,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script>
   $(function() {
-    const rs = "<?php echo $this->session->userdata('kode_rs') ?>"
+    const rs = "<?php echo $this->session->userdata('projectid') ?>"
     const token = '<?php echo $token ?>';
-    $('#kode_rs').select2()
-    $('#kode_rs').select2({
+    $('#projectid').select2()
+    $('#projectid').select2({
       minimumInputLength: 3,
       allowClear: true,
       placeholder: 'Rumah Sakit',
@@ -253,7 +255,7 @@
         "bserverSide": true,
         "scrollX": true,
         "scrollY": true,
-        "sAjaxSource": '<?php echo base_url('Bangsal/dataBangsal') ?>',
+        "sAjaxSource": '<?php echo base_url('Bangsal/dataBangsal') ?>?projectid=' + rs,
         "aoColumns": [{
             "mData": "nomor",
             className: "text-center"
@@ -263,6 +265,9 @@
           },
           {
             "mData": "milestonename"
+          },
+          {
+            "mData": "projectname"
           },
           {
             "mData": "action"
@@ -296,7 +301,7 @@
     }
 
     $('#btn-tambah').on('click', function() {
-      $('#title').html('Tambah Bangsal')
+      $('#title').html('Tambah Milestone')
       $('#milestoneid_edt').val('');
       $('#milestonename').val('');
       $('#modalAdd').modal('show');
@@ -305,9 +310,12 @@
     $('#tbBangsal').on('click', '#btn-edit', function() {
       const milestoneid = $(this).data('milestoneid');
       const milestonename = $(this).data('milestonename');
-      $('#title').html('Edit Bangsal')
+      const projectid = $(this).data('projectid');
+      const projectname = $(this).data('projectname');
+      $('#title').html('Edit Milestone')
       $('#milestoneid_edt').val(milestoneid);
       $('#milestonename').val(milestonename);
+      $('#projectid').select2("val", "");
       $('#modalBangsal').modal('show');
     })
 
@@ -337,19 +345,19 @@
     $('#btn_save').on('click', function() {
       let milestoneid = $('#milestoneid_edt').val();
       let milestonename = $('#milestonename').val();
-      // let kode_rs;
-      // if (rs !== 'all') {
-      //   kode_rs = rs
+      // let projectid;
+      // if (rs !== '') {
+      //   projectid = rs
       // } else {
-      //   kode_rs = $('#kode_rs').val();
+      //   projectid = $('#projectid').val();
       // }
       let data;
       let url;
       if (milestoneid !== '') {
         data = {
           milestoneid: milestoneid,
-          milestonename: milestonename
-          // kode_rs: kode_rs
+          milestonename: milestonename,
+          // projectid: projectid
         }
         url = '<?php echo base_url('api/bangsal/updateBangsal') ?>'
         ManageBangsal(url, data);
@@ -357,15 +365,15 @@
         return;
       }
       data = {
-        milestoneid: milestoneid,
-        milestonename: milestonename
-
-        // kode_rs: kode_rs
+        milestonename: milestonename,
+        // projectid: projectid
       };
       url = '<?php echo base_url('api/bangsal/addBangsal') ?>'
       ManageBangsal(url, data)
       showTable();
     })
+
+
     $(function() {
 
       $('#tglmulai').datetimepicker({

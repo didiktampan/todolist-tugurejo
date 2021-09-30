@@ -20,7 +20,7 @@
           <a href="<?php echo base_url() ?>">
             <!-- <img src="<?php echo base_url() ?>assets/images/pemprov.png" alt="" style="width: 20%;height: auto;"> -->
             <b>Todolist | RSUD Tugurejo </b>
-            <img src="<?php echo base_url() ?>assets/assets/images/logo.png" alt="" style="width: 20%;height: auto;">
+            <img src="<?php echo base_url() ?>assets/images/logo.png" alt="" style="width: 20%;height: auto;">
           </a>
         </div>
         <div class="card">

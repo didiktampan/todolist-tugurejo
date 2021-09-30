@@ -4,6 +4,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class RumahSakit extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        if ($this->session->userdata('is_login') == FALSE) {
+            redirect('signin', 'refresh');
+        }
+    }
+
 
     public function index()
     {
@@ -13,9 +21,9 @@ class RumahSakit extends CI_Controller
 
     public function select2RS()
     {
-        $nama_rs = $this->input->get('search');
-        $field = 'kode_rs as id, nama_rs as text';
-        $data = SQLBUILDER::getWhere('rumah_sakit', $field, 'nama_rs', $nama_rs);
+        $projectname = $this->input->get('search');
+        $field = 'projectid as id, projectname as text';
+        $data = SQLBUILDER::getWhere('SDP_PROJECT', $field, 'projectname', $projectname);
         return APIRESPONSE::response('', $data);
     }
 
