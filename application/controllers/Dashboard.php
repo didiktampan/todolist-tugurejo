@@ -33,7 +33,10 @@ class Dashboard extends CI_Controller
         if ($this->session->userdata('is_login') == FALSE) {
             redirect('signin', 'refresh');
         } else {
-            $this->data['pinjam'] = $this->db->query("SELECT TOP 10 * FROM sdp_complain  ORDER BY 'ID_TICKET' DESC");
+            $this->data['pinjam'] = $this->db->query("SELECT TOP 10  * FROM sdp_complain  ORDER BY 'ID_TICKET' DESC");
+            $this->data['OpenComplain'] = $this->db->query("SELECT * FROM SDP_COMPLAIN WHERE STATUS = 'O' ORDER BY DATE_INPUT ASC");
+            $this->data['ProgresComplain'] = $this->db->query("SELECT * FROM SDP_COMPLAIN WHERE STATUS = 'P' ORDER BY DATE_INPUT ASC");
+            $this->data['ClosedComplain'] = $this->db->query("SELECT * FROM SDP_COMPLAIN WHERE STATUS = 'C' ORDER BY DATE_INPUT ASC");
             // $this->data['komplen'] = $this->db->query("SELECT * FROM sdp_complain_card ORDER BY 'ID_TICKET'");
             // echo json_encode($this->data['komplen']->result());
             // return;
@@ -104,5 +107,41 @@ class Dashboard extends CI_Controller
             $no++;
         }
         echo $html;
+    }
+    public function dataBangsal()
+    {
+        $projectid = $this->input->get('projectid');
+        $final = [];
+        $result = [];
+        $data = $this->bangsal->getBangsal($projectid);
+        $nomor = 0;
+        foreach ($data as $key => $value) {
+            $nomor++;
+            $result[] = [
+                'nomor' => $nomor,
+                'milestoneid' => $value->MILESTONEID,
+                'milestonename' => $value->MILESTONENAME,
+                'projectname' => $value->PROJECTNAME,
+                'action' => '
+                    <button class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="bottom" title="Edit"
+                    id="btn-edit"
+                    data-milestoneid="' . $value->MILESTONEID . '"
+                    data-milestonename="' . $value->MILESTONENAME . '"
+                    data-projectid="' . $value->PROJECTID . '"
+                    data-projectname="' . $value->PROJECTNAME . '">
+                        <i class="fa fa-edit"></i>
+                    </button>
+                    <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="bottom" title="Delete"
+                    id="btn-delete"
+                    data-milestoneid="' . $value->MILESTONEID . '"
+                    data-milestonename="' . $value->MILESTONENAME . '">
+                        <i class="fa fa-trash"></i>
+                    </button>'
+            ];
+        }
+        $final = [
+            'aaData' => $result
+        ];
+        return APIRESPONSE::response('', $final);
     }
 }

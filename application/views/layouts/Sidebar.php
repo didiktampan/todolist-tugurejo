@@ -10,6 +10,12 @@
                     <p>Dashboard</p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="<?php echo site_url('Dashboard') ?>" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Releases</p>
+                </a>
+            </li>
             <!-- <li class="nav-item">
                 <a href="<?php echo site_url('ComplainCard') ?>" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>

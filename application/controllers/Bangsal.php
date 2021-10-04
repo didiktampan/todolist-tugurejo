@@ -18,7 +18,7 @@ class Bangsal extends CI_Controller
 
         $data['token'] = $token = AUTHORIZATION::private_token();
         $this->template->load('layouts/Layouts', 'dashboard/V_bangsal', $data);
-        $this->template->load('layouts/Layouts', 'dashboard/td_Dashboard', $data);
+        // $this->template->load('layouts/Layouts', 'dashboard/td_Dashboard', $data);
     }
 
     public function select2RS()

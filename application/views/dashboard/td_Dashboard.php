@@ -69,36 +69,17 @@
                     </div>
                 </div>
             </div>
+
             <div class="card card-row card-primary">
                 <div class="card-header">
                     <h3 class="card-title">
-                        To Do
+                        Open Complain
                     </h3>
                 </div>
                 <div class="card-body">
                     <div class="card card-primary card-outline">
                         <div class="card-header">
-                            <h5 class="card-title">Create first milestone</h5>
-                            <div class="card-tools">
-                                <a href="#" class="btn btn-tool btn-link">#5</a>
-                                <a href="#" class="btn btn-tool">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card card-row card-default">
-                <div class="card-header bg-info">
-                    <h3 class="card-title">
-                        In Progress
-                    </h3>
-                </div>
-                <div class="card-body">
-                    <div class="card card-light card-outline">
-                        <div class="card-header">
-                            <h5 class="card-title">Update Readme</h5>
+                            <h5 class="card-title">Open Complain</h5>
                             <div class="card-tools">
                                 <a href="#" class="btn btn-tool btn-link">#2</a>
                                 <a href="#" class="btn btn-tool">
@@ -107,12 +88,86 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                                Aenean commodo ligula eget dolor. Aenean massa.
-                                Cum sociis natoque penatibus et magnis dis parturient montes,
-                                nascetur ridiculus mus.
-                            </p>
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Complain</th>
+                                        <!-- <th>Card</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $no = 1;
+                                    foreach ($OpenComplain->result_array() as $isi) {
+                                        $ID_TICKET = $isi['ID_TICKET'];
+                                    ?>
+
+                                        <tr>
+                                            <td><?= $no; ?></td>
+                                            <td><?= $isi['DESC_TITLE']; ?></td>
+                                            <!-- <td style="text-align:center;">
+
+                                                <button type="button" class="btn btn-default btn-modal btn-xs" data-id="<?= $isi['ID_TICKET'] ?>" data-toggle="modal" data-target="#modal-xl">
+                                                    <i class="fas fa-book-open"></i>
+                                                </button>
+                                            </td> -->
+                                        </tr>
+                                    <?php $no++;
+                                    } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-row card-default">
+                <div class="card-header bg-info">
+                    <h3 class="card-title">
+                        Progress Complain
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="card card-light card-outline">
+                        <div class="card-header">
+                            <h5 class="card-title">Progress Complain</h5>
+                            <div class="card-tools">
+                                <a href="#" class="btn btn-tool btn-link">#3</a>
+                                <a href="#" class="btn btn-tool">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Complain</th>
+                                        <!-- <th>Card</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $no = 1;
+                                    foreach ($ProgresComplain->result_array() as $isi) {
+                                        $ID_TICKET = $isi['ID_TICKET'];
+                                    ?>
+
+                                        <tr>
+                                            <td><?= $no; ?></td>
+                                            <td><?= $isi['DESC_TITLE']; ?></td>
+                                            <!-- <td style="text-align:center;">
+
+                                                <button type="button" class="btn btn-default btn-modal btn-xs" data-id="<?= $isi['ID_TICKET'] ?>" data-toggle="modal" data-target="#modal-xl">
+                                                    <i class="fas fa-book-open"></i>
+                                                </button>
+                                            </td> -->
+                                        </tr>
+                                    <?php $no++;
+                                    } ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -120,19 +175,50 @@
             <div class="card card-row card-success">
                 <div class="card-header">
                     <h3 class="card-title">
-                        Done
+                        Closed Complain
                     </h3>
                 </div>
                 <div class="card-body">
                     <div class="card card-primary card-outline">
                         <div class="card-header">
-                            <h5 class="card-title">Create repo</h5>
+                            <h5 class="card-title   ">Closed Complain</h5>
                             <div class="card-tools">
-                                <a href="#" class="btn btn-tool btn-link">#1</a>
+                                <a href="#" class="btn btn-tool btn-link">#4</a>
                                 <a href="#" class="btn btn-tool">
                                     <i class="fas fa-pen"></i>
                                 </a>
                             </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Complain</th>
+                                        <!-- <th>Card</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $no = 1;
+                                    foreach ($ClosedComplain->result_array() as $isi) {
+                                        $ID_TICKET = $isi['ID_TICKET'];
+                                    ?>
+
+                                        <tr>
+                                            <td><?= $no; ?></td>
+                                            <td><?= $isi['DESC_TITLE']; ?></td>
+                                            <!-- <td style="text-align:center;">
+
+                                                <button type="button" class="btn btn-default btn-modal btn-xs" data-id="<?= $isi['ID_TICKET'] ?>" data-toggle="modal" data-target="#modal-xl">
+                                                    <i class="fas fa-book-open"></i>
+                                                </button>
+                                            </td> -->
+                                        </tr>
+                                    <?php $no++;
+                                    } ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -191,6 +277,26 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' type='text/javascript'></script>
 <script>
+    $(document).ready(function() {
+        $(".btn-modal").on('click', function() {
+            var id_ticket = $(this).data('id');
+
+            $.ajax({
+                url: '<?= base_url('Dashboard/get_tiket') ?>',
+                type: 'POST',
+                async: true,
+                dataType: 'HTML',
+                data: {
+                    id_ticket: id_ticket
+                },
+                success: function(response) {
+                    $("#table-modal").html(response);
+                }
+
+            });
+
+        });
+    });
     $(document).ready(function() {
         $(".btn-modal").on('click', function() {
             var id_ticket = $(this).data('id');

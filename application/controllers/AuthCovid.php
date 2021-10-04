@@ -76,9 +76,13 @@ class AuthCovid extends CI_Controller
 					$this->session->set_userdata($data_login);
 					redirect('Dashboard');
 				} else {
-					$this->session->set_flashdata('pesan', 'Login gagal: USPASS salah!');
-					redirect('/', 'refresh');
-					// echo $this->input->post('USPASS');
+					$data_login = array(
+						'code' => 300,
+						'message' => 'password salah'
+						// $this->session->set_flashdata('pesan', 'Login gagal: USPASS salah!');
+						// redirect('/', 'refresh');
+						// echo $this->input->post('USPASS');
+					);
 				}
 				// echo $this->input->post('USLOGNM');
 			} else { // jika USLOGNM tidak terdaftar!
