@@ -19,9 +19,9 @@
         <span class="dropdown-item dropdown-header">Information</span>
         <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item">
-          <i class="fas fa-user"></i> Petugas : <?php echo $this->session->userdata('USFULLNM') ?>
+          <i class="fas fa-user"></i> Petugas : <?php echo $this->session->userdata('usfullnm') ?>
         </a>
-        <a href="<?php echo base_url(); ?>AuthCovid/logout" class="dropdown-item">
+        <a href="<?php echo base_url(); ?>Auth/signout" class="dropdown-item">
           <i class="fas fa-sign-out-alt"></i> Sign Out
         </a>
         <div class="dropdown-divider"></div>

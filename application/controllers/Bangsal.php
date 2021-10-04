@@ -8,8 +8,8 @@ class Bangsal extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        if ($this->session->userdata('is_login') == FALSE) {
-            redirect('signin', 'refresh');
+        if ($this->session->userdata('isLogin') != TRUE) {
+            redirect('Auth');
         }
     }
 

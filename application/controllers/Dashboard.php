@@ -30,8 +30,8 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('is_login') == FALSE) {
-            redirect('signin', 'refresh');
+        if ($this->session->userdata('isLogin') != TRUE) {
+            redirect('Auth');
         } else {
             $this->data['pinjam'] = $this->db->query("SELECT TOP 10  * FROM sdp_complain  ORDER BY 'ID_TICKET' DESC");
             $this->data['OpenComplain'] = $this->db->query("SELECT * FROM SDP_COMPLAIN WHERE STATUS = 'O' ORDER BY DATE_INPUT ASC");

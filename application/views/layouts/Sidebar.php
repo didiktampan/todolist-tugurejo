@@ -22,7 +22,7 @@
                     <p>ToDoList</p>
                 </a>
             </li> -->
-            <?php if ($this->session->userdata('TIPEUSER') === 'IT') { ?>
+            <?php if ($this->session->userdata('tipe_user') === 'IT') { ?>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>

@@ -1,28 +1,30 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class User extends CI_Controller {
+class User extends CI_Controller
+{
 
     public function __construct()
     {
         parent::__construct();
     }
-    
+
     public function index()
     {
         echo 'API USER MITIGASI';
     }
 
-    public function login(){
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
+    public function login()
+    {
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
         $check = $this->AuthModel->login($username);
-        $updUserStatus = ['status_user'=> 1];
+        $updUserStatus = ['status_user' => 1];
 
-        if($check !== null){
+        if ($check !== null) {
             $hash = password_verify($password, $check->password);
-            if($hash){
+            if ($hash) {
                 $status = $check->status_user === 1 ? TRUE : FALSE;
                 $obj = array(
                     'kode_rs' => $check->kode_rs,
@@ -31,7 +33,7 @@ class User extends CI_Controller {
                     'status_log' => TRUE,
                     'status_user' => $status,
                 );
-                $res = [ 
+                $res = [
                     'metadata' => [
                         'code' => 200,
                         'message' => 'berhasil masuk'
@@ -41,7 +43,7 @@ class User extends CI_Controller {
                 $this->session->set_userdata($res);
                 SQLBUILDER::manageSql('user_mitigasi', $updUserStatus, 'update', 'username', $username);
             } else {
-                $res = [ 
+                $res = [
                     'metadata' => [
                         'code' => 300,
                         'message' => 'password salah'
@@ -50,7 +52,7 @@ class User extends CI_Controller {
                 ];
             }
         } else {
-            $res = [ 
+            $res = [
                 'metadata' => [
                     'code' => 200,
                     'message' => 'akun tidak ditemukan'
@@ -58,49 +60,49 @@ class User extends CI_Controller {
                 'response' => new stdClass()
             ];
         }
-		
-		return APIRESPONSE::response('',$res);
-	}
+
+        return APIRESPONSE::response('', $res);
+    }
 
     public function getToken()
-	{
-		$token = AUTHORIZATION::private_token();
+    {
+        $token = AUTHORIZATION::private_token();
         $res = [
             'metadata' => ['message' => 'username / password salah', 'code' => 401],
             'response' => []
         ];
-		if($_SERVER['REQUEST_METHOD'] === 'POST' ){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $this->input->post('username');
-            $password = $this->input->post('password');   
-			if($username === 'jateng' && $password === 'gayeng'){
-				$res = [
+            $password = $this->input->post('password');
+            if ($username === 'jateng' && $password === 'gayeng') {
+                $res = [
                     'metadata' => ['message' => 'Ok', 'code' => 200],
-					'response' => ['token' => $token]
-				];
+                    'response' => ['token' => $token]
+                ];
                 return APIRESPONSE::response(200, $res);
-			} else {
-				$res = [
+            } else {
+                $res = [
                     'metadata' => ['message' => 'username / password salah', 'code' => 401],
-					'response' => []
-				];
+                    'response' => []
+                ];
                 return APIRESPONSE::response(401, $res);
-			}
-		} else {
-			$res = [
-				'metadata' => ['message' => 'Method Not Allowed', 'code' => 405]
-			];
+            }
+        } else {
+            $res = [
+                'metadata' => ['message' => 'Method Not Allowed', 'code' => 405]
+            ];
             return APIRESPONSE::response(405, $res);
-		}
-        return APIRESPONSE::response(401, $res);	
+        }
+        return APIRESPONSE::response(401, $res);
     }
 
     public function getListUser()
     {
         $token = $this->input->get_request_header('X-token');
         $validation = AUTHORIZATION::implementation('GET', $token);
-        if($validation === true){
+        if ($validation === true) {
             $data = $this->user->getListUser();
-            $res = [ 
+            $res = [
                 'metadata' => [
                     'code' => 200,
                     'message' => 'ambil daftar pengguna mitigasi'
@@ -123,8 +125,8 @@ class User extends CI_Controller {
 
         $token = $this->input->get_request_header('X-token');
         $validation = AUTHORIZATION::implementation('POST', $token);
-        if(!isset($username) || $username === ''){
-            $res = [ 
+        if (!isset($username) || $username === '') {
+            $res = [
                 'metadata' => [
                     'code' => 200,
                     'message' => "Username tidak boleh kosong"
@@ -133,8 +135,8 @@ class User extends CI_Controller {
             ];
             return APIRESPONSE::response('', $res);
         }
-        if(!isset($password) || $password === ''){
-            $res = [ 
+        if (!isset($password) || $password === '') {
+            $res = [
                 'metadata' => [
                     'code' => 200,
                     'message' => "Password tidak boleh kosong"
@@ -143,8 +145,8 @@ class User extends CI_Controller {
             ];
             return APIRESPONSE::response('', $res);
         }
-        if(!isset($kode_rs) || $kode_rs === ''){
-            $res = [ 
+        if (!isset($kode_rs) || $kode_rs === '') {
+            $res = [
                 'metadata' => [
                     'code' => 200,
                     'message' => "Kode RS tidak boleh kosong"
@@ -153,7 +155,7 @@ class User extends CI_Controller {
             ];
             return APIRESPONSE::response('', $res);
         }
-        if($validation === true){
+        if ($validation === true) {
             $obj = [
                 'username' => $username,
                 'password' => password_hash($password, PASSWORD_DEFAULT),
@@ -162,7 +164,7 @@ class User extends CI_Controller {
                 'nik' => $nik
             ];
             $data = SQLBUILDER::manageSql('user_mitigasi', $obj, 'post', '', '');
-            $res = [ 
+            $res = [
                 'metadata' => [
                     'code' => 200,
                     'message' => 'berhasil menambahkan'
@@ -175,7 +177,8 @@ class User extends CI_Controller {
         return APIRESPONSE::response('', $res);
     }
 
-    public function updateUser(){
+    public function updateUser()
+    {
         $username = $this->input->post('username');
         $fullname = $this->input->post('fullname');
         $nik = $this->input->post('nik');
@@ -184,8 +187,8 @@ class User extends CI_Controller {
 
         $token = $this->input->get_request_header('X-token');
         $validation = AUTHORIZATION::implementation('POST', $token);
-        if(!isset($username) || $username === ''){
-            $res = [ 
+        if (!isset($username) || $username === '') {
+            $res = [
                 'metadata' => [
                     'code' => 200,
                     'message' => "Username tidak boleh kosong"
@@ -194,8 +197,8 @@ class User extends CI_Controller {
             ];
             return APIRESPONSE::response('', $res);
         }
-        if(!isset($password) || $password === ''){
-            $res = [ 
+        if (!isset($password) || $password === '') {
+            $res = [
                 'metadata' => [
                     'code' => 200,
                     'message' => "Password tidak boleh kosong"
@@ -204,8 +207,8 @@ class User extends CI_Controller {
             ];
             return APIRESPONSE::response('', $res);
         }
-        if(!isset($kode_rs) || $kode_rs === ''){
-            $res = [ 
+        if (!isset($kode_rs) || $kode_rs === '') {
+            $res = [
                 'metadata' => [
                     'code' => 200,
                     'message' => "Kode RS tidak boleh kosong"
@@ -214,7 +217,7 @@ class User extends CI_Controller {
             ];
             return APIRESPONSE::response('', $res);
         }
-        if($validation === true){
+        if ($validation === true) {
             $obj = [
                 'password' => password_hash($password, PASSWORD_DEFAULT),
                 'kode_rs' => $kode_rs,
@@ -222,7 +225,7 @@ class User extends CI_Controller {
                 'nik' => $nik
             ];
             $data = SQLBUILDER::manageSql('user_mitigasi', $obj, 'update', 'username', $username);
-            $res = [ 
+            $res = [
                 'metadata' => [
                     'code' => 200,
                     'message' => 'berhasil mengubah'
@@ -241,8 +244,8 @@ class User extends CI_Controller {
 
         $token = $this->input->get_request_header('X-token');
         $validation = AUTHORIZATION::implementation('POST', $token);
-        if(!isset($username) || $username === ''){
-            $res = [ 
+        if (!isset($username) || $username === '') {
+            $res = [
                 'metadata' => [
                     'code' => 200,
                     'message' => "Username tidak boleh kosong"
@@ -251,10 +254,10 @@ class User extends CI_Controller {
             ];
             return APIRESPONSE::response('', $res);
         }
-        
-        if($validation === true){
+
+        if ($validation === true) {
             $data = SQLBUILDER::manageSql('user_mitigasi', '', 'delete', 'username', $username);
-            $res = [ 
+            $res = [
                 'metadata' => [
                     'code' => 200,
                     'message' => 'berhasil menghapus'
@@ -266,7 +269,6 @@ class User extends CI_Controller {
         }
         return APIRESPONSE::response('', $res);
     }
-
 }
 
 /* End of file User.php */
