@@ -11,9 +11,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="<?php echo site_url('Dashboard') ?>" class="nav-link">
+                <a href="<?php echo site_url('Report') ?>" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Releases</p>
+                    <p>Report</p>
                 </a>
             </li>
             <!-- <li class="nav-item">

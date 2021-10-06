@@ -59,7 +59,8 @@
 
                                           <tr>
                                               <td><?= $no; ?></td>
-                                              <td><?= $isi['DESC_TITLE']; ?></td>
+                                              <td><?= $isi['DESC_TITLE']; ?>
+                                              </td>
                                               <td style="text-align:center;">
 
                                                   <button type="button" class="btn btn-default btn-modal btn-xs" data-id="<?= $isi['ID_TICKET'] ?>" data-toggle="modal" data-target="#modal-xl">
