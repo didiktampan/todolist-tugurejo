@@ -34,9 +34,9 @@ class Dashboard extends CI_Controller
             redirect('Auth');
         } else {
             $this->data['pinjam'] = $this->db->query("SELECT TOP 10  * FROM sdp_complain  ORDER BY 'ID_TICKET' DESC");
-            $this->data['OpenComplain'] = $this->db->query("SELECT * FROM SDP_COMPLAIN WHERE STATUS = 'O' ORDER BY DATE_INPUT ASC");
-            $this->data['ProgresComplain'] = $this->db->query("SELECT * FROM SDP_COMPLAIN WHERE STATUS = 'P' ORDER BY DATE_INPUT ASC");
-            $this->data['ClosedComplain'] = $this->db->query("SELECT * FROM SDP_COMPLAIN WHERE STATUS = 'C' ORDER BY DATE_INPUT ASC");
+            $this->data['OpenComplain'] = $this->db->query("SELECT TOP 10 * FROM SDP_COMPLAIN WHERE STATUS = 'O' ORDER BY DATE_INPUT ASC");
+            $this->data['ProgresComplain'] = $this->db->query("SELECT TOP 10 * FROM SDP_COMPLAIN WHERE STATUS = 'P' ORDER BY DATE_INPUT ASC");
+            $this->data['ClosedComplain'] = $this->db->query("SELECT TOP 10 * FROM SDP_COMPLAIN WHERE STATUS = 'C' ORDER BY DATE_INPUT ASC");
             // $this->data['komplen'] = $this->db->query("SELECT * FROM sdp_complain_card ORDER BY 'ID_TICKET'");
             // echo json_encode($this->data['komplen']->result());
             // return;
