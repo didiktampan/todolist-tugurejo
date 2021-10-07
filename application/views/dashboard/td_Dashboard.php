@@ -1,9 +1,9 @@
   <!-- Ekko Lightbox -->
-  <link rel="stylesheet" href="<?php echo base_url() ?>assets/assets2/plugins/ekko-lightbox/ekko-lightbox.css">
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/ekko-lightbox/ekko-lightbox.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo base_url() ?>assets/assets2/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="<?php echo base_url() ?>assets/assets2/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <?php if (!defined('BASEPATH')) exit('No direct script acess allowed'); ?>
 
   <div class="content-wrapper kanban">
@@ -31,50 +31,45 @@
                       </h3>
                   </div>
                   <div class="card-body">
-                      <div class="card card-info card-outline">
-                          <div class="card-header">
-                              <h5 class="card-title">Complain</h5>
-                              <div class="card-tools">
-                                  <a href="#" class="btn btn-tool btn-link">#1</a>
-                                  <a href="#" class="btn btn-tool">
-                                      <i class="fas fa-pen"></i>
-                                  </a>
+                      <?php
+                        $no = 1;
+                        foreach ($pinjam->result_array() as $isi) {
+                            $ID_TICKET = $isi['ID_TICKET'];
+                        ?>
+                          <div class="card card-info card-outline">
+                              <div class="card-header">
+                                  <h5 class="card-title"> <?php
+                                                            if ($isi['STATUS']  == 'O') {
+                                                                echo "<span class='badge badge-secondary'>Open</span>";
+                                                            } elseif ($isi['STATUS'] == 'P') {
+                                                                echo "<span class='badge badge-primary'>On-Progress</span>";
+                                                            } elseif ($isi['STATUS']  == 'C') {
+                                                                echo "<span class='badge badge-success'>Closet</span>";
+                                                            }
+                                                            ?></td>
+                                  </h5>
+                                  <div class="card-tools">
+                                      <!-- <a href="#" class="btn btn-tool btn-link"></a> -->
+                                      <a href="#" class="btn btn-tool">
+                                          <button type="button" class="btn btn-default btn-modal btn-xs" data-id="<?= $isi['ID_TICKET'] ?>" data-toggle="modal" data-target="#modal-xl">
+                                              <i class="fas fa-book-open"></i>
+                                          </button>
+
+                                      </a>
+                                  </div>
+                              </div>
+                              <div col width="10%" class="card-body">
+                                  <!-- <td><?= $no; ?></td> -->
+                                  <?= $isi['DESC_TITLE']; ?>
+                                  <!-- <button type="button" class="btn btn-default btn-modal btn-xs" data-id="<?= $isi['ID_TICKET'] ?>" data-toggle="modal" data-target="#modal-xl">
+                                      <i class="fas fa-book-open"></i>
+                                  </button> -->
                               </div>
                           </div>
-                          <div class="card-body">
-                              <table class="table table-bordered table-hover">
-                                  <thead>
-                                      <tr>
-                                          <th>No</th>
-                                          <th>Complain</th>
-                                          <th>Card</th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                      <?php
-                                        $no = 1;
-                                        foreach ($pinjam->result_array() as $isi) {
-                                            $ID_TICKET = $isi['ID_TICKET'];
-                                        ?>
-
-                                          <tr>
-                                              <td><?= $no; ?></td>
-                                              <td><?= $isi['DESC_TITLE']; ?>
-                                              </td>
-                                              <td style="text-align:center;">
-
-                                                  <button type="button" class="btn btn-default btn-modal btn-xs" data-id="<?= $isi['ID_TICKET'] ?>" data-toggle="modal" data-target="#modal-xl">
-                                                      <i class="fas fa-book-open"></i>
-                                                  </button>
-                                              </td>
-                                          </tr>
-                                      <?php $no++;
-                                        } ?>
-                                  </tbody>
-                              </table>
-                          </div>
-                      </div>
+                      <?php $no++;
+                        } ?>
                   </div>
+
               </div>
 
               <div class="card card-row card-primary">
@@ -84,48 +79,36 @@
                       </h3>
                   </div>
                   <div class="card-body">
-                      <div class="card card-primary card-outline">
-                          <div class="card-header">
-                              <h5 class="card-title">Open Complain</h5>
-                              <div class="card-tools">
-                                  <a href="#" class="btn btn-tool btn-link">#2</a>
-                                  <a href="#" class="btn btn-tool">
-                                      <i class="fas fa-pen"></i>
-                                  </a>
+                      <?php
+                        foreach ($OpenComplain->result_array() as $isi) {
+                            $ID_TICKET = $isi['ID_TICKET'];
+                        ?>
+                          <div class="card card-primary card-outline">
+                              <div class="card-header">
+                                  <h5 class="card-title">
+                                      <?php
+                                        if ($isi['STATUS']  == 'O') {
+                                            echo "<span class='badge badge-secondary'>Open</span>";
+                                        } elseif ($isi['STATUS'] == 'P') {
+                                            echo "<span class='badge badge-primary'>On-Progress</span>";
+                                        } elseif ($isi['STATUS']  == 'C') {
+                                            echo "<span class='badge badge-success'>Closet</span>";
+                                        }
+                                        ?>
+                                  </h5>
+                                  <div class="card-tools">
+                                      <!-- <a href="#" class="btn btn-tool btn-link">#2</a> -->
+                                      <a href="#" class="btn btn-tool">
+                                          <i class="fas fa-pen"></i>
+                                      </a>
+                                  </div>
+                              </div>
+                              <div class="card-body">
+                                  <?= $isi['DESC_TITLE']; ?>
                               </div>
                           </div>
-                          <div class="card-body">
-                              <table class="table table-bordered table-hover">
-                                  <thead>
-                                      <tr>
-                                          <th>No</th>
-                                          <th>Complain</th>
-                                          <!-- <th>Card</th> -->
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                      <?php
-                                        $no = 1;
-                                        foreach ($OpenComplain->result_array() as $isi) {
-                                            $ID_TICKET = $isi['ID_TICKET'];
-                                        ?>
-
-                                          <tr>
-                                              <td><?= $no; ?></td>
-                                              <td><?= $isi['DESC_TITLE']; ?></td>
-                                              <!-- <td style="text-align:center;">
-
-                                                <button type="button" class="btn btn-default btn-modal btn-xs" data-id="<?= $isi['ID_TICKET'] ?>" data-toggle="modal" data-target="#modal-xl">
-                                                    <i class="fas fa-book-open"></i>
-                                                </button>
-                                            </td> -->
-                                          </tr>
-                                      <?php $no++;
-                                        } ?>
-                                  </tbody>
-                              </table>
-                          </div>
-                      </div>
+                      <?php $no++;
+                        } ?>
                   </div>
               </div>
               <div class="card card-row card-default">
@@ -135,48 +118,33 @@
                       </h3>
                   </div>
                   <div class="card-body">
-                      <div class="card card-light card-outline">
-                          <div class="card-header">
-                              <h5 class="card-title">Progress Complain</h5>
-                              <div class="card-tools">
-                                  <a href="#" class="btn btn-tool btn-link">#3</a>
-                                  <a href="#" class="btn btn-tool">
-                                      <i class="fas fa-pen"></i>
-                                  </a>
+                      <?php
+                        foreach ($ProgresComplain->result_array() as $isi) {
+                            $ID_TICKET = $isi['ID_TICKET'];
+                        ?>
+                          <div class="card card-light card-outline">
+                              <div class="card-header">
+                                  <h5 class="card-title"> <?php
+                                                            if ($isi['STATUS']  == 'O') {
+                                                                echo "<span class='badge badge-secondary'>Open</span>";
+                                                            } elseif ($isi['STATUS'] == 'P') {
+                                                                echo "<span class='badge badge-primary'>On-Progress</span>";
+                                                            } elseif ($isi['STATUS']  == 'C') {
+                                                                echo "<span class='badge badge-success'>Closet</span>";
+                                                            }
+                                                            ?></h5>
+                                  <div class="card-tools">
+                                      <!-- <a href="#" class="btn btn-tool btn-link"></a> -->
+                                      <a href="#" class="btn btn-tool">
+                                          <i class="fas fa-pen"></i>
+                                      </a>
+                                  </div>
+                              </div>
+                              <div class="card-body">
+                                  <?= $isi['DESC_TITLE']; ?>
                               </div>
                           </div>
-                          <div class="card-body">
-                              <table class="table table-bordered table-hover">
-                                  <thead>
-                                      <tr>
-                                          <th>No</th>
-                                          <th>Complain</th>
-                                          <!-- <th>Card</th> -->
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                      <?php
-                                        $no = 1;
-                                        foreach ($ProgresComplain->result_array() as $isi) {
-                                            $ID_TICKET = $isi['ID_TICKET'];
-                                        ?>
-
-                                          <tr>
-                                              <td><?= $no; ?></td>
-                                              <td><?= $isi['DESC_TITLE']; ?></td>
-                                              <!-- <td style="text-align:center;">
-
-                                                <button type="button" class="btn btn-default btn-modal btn-xs" data-id="<?= $isi['ID_TICKET'] ?>" data-toggle="modal" data-target="#modal-xl">
-                                                    <i class="fas fa-book-open"></i>
-                                                </button>
-                                            </td> -->
-                                          </tr>
-                                      <?php $no++;
-                                        } ?>
-                                  </tbody>
-                              </table>
-                          </div>
-                      </div>
+                      <?php } ?>
                   </div>
               </div>
               <div class="card card-row card-success">
@@ -186,48 +154,34 @@
                       </h3>
                   </div>
                   <div class="card-body">
-                      <div class="card card-primary card-outline">
-                          <div class="card-header">
-                              <h5 class="card-title   ">Closed Complain</h5>
-                              <div class="card-tools">
-                                  <a href="#" class="btn btn-tool btn-link">#4</a>
-                                  <a href="#" class="btn btn-tool">
-                                      <i class="fas fa-pen"></i>
-                                  </a>
+                      <?php
+                        foreach ($ClosedComplain->result_array() as $isi) {
+                            $ID_TICKET = $isi['ID_TICKET'];
+                        ?>
+                          <div class="card card-primary card-outline">
+                              <div class="card-header">
+                                  <h5 class="card-title"><?php
+                                                            if ($isi['STATUS']  == 'O') {
+                                                                echo "<span class='badge badge-secondary'>Open</span>";
+                                                            } elseif ($isi['STATUS'] == 'P') {
+                                                                echo "<span class='badge badge-primary'>On-Progress</span>";
+                                                            } elseif ($isi['STATUS']  == 'C') {
+                                                                echo "<span class='badge badge-success'>Closet</span>";
+                                                            }
+                                                            ?></h5>
+                                  </h5>
+                                  <div class="card-tools">
+                                      <!-- <a href="#" class="btn btn-tool btn-link">#4</a> -->
+                                      <a href="#" class="btn btn-tool">
+                                          <i class="fas fa-pen"></i>
+                                      </a>
+                                  </div>
+                              </div>
+                              <div class="card-body">
+                                  <td><?= $isi['DESC_TITLE']; ?></td>
                               </div>
                           </div>
-                          <div class="card-body">
-                              <table class="table table-bordered table-hover">
-                                  <thead>
-                                      <tr>
-                                          <th>No</th>
-                                          <th>Complain</th>
-                                          <!-- <th>Card</th> -->
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                      <?php
-                                        $no = 1;
-                                        foreach ($ClosedComplain->result_array() as $isi) {
-                                            $ID_TICKET = $isi['ID_TICKET'];
-                                        ?>
-
-                                          <tr>
-                                              <td><?= $no; ?></td>
-                                              <td><?= $isi['DESC_TITLE']; ?></td>
-                                              <!-- <td style="text-align:center;">
-
-                                                <button type="button" class="btn btn-default btn-modal btn-xs" data-id="<?= $isi['ID_TICKET'] ?>" data-toggle="modal" data-target="#modal-xl">
-                                                    <i class="fas fa-book-open"></i>
-                                                </button>
-                                            </td> -->
-                                          </tr>
-                                      <?php $no++;
-                                        } ?>
-                                  </tbody>
-                              </table>
-                          </div>
-                      </div>
+                      <?php } ?>
                   </div>
               </div>
           </div>
@@ -282,11 +236,11 @@
   <!-- jQuery -->
 
   <!-- Ekko Lightbox -->
-  <script src="<?php echo base_url() ?>assets/assets2/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+  <script src="<?php echo base_url() ?>assets/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
   <!-- overlayScrollbars -->
-  <script src="<?php echo base_url() ?>assets/assets2/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <script src="<?php echo base_url() ?>assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <!-- Filterizr-->
-  <script src="<?php echo base_url() ?>assets/assets2/plugins/filterizr/jquery.filterizr.min.js"></script>
+  <script src="<?php echo base_url() ?>assets/plugins/filterizr/jquery.filterizr.min.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' type='text/javascript'></script>

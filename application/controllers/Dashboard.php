@@ -102,6 +102,7 @@ class Dashboard extends CI_Controller
                             <td>' . $data['TITLE_CARD'] . '</td>
                             <td>' . $data['DESC_CARD'] . '</td>
                             <td>' . $data['ID_SKP'] . '</td>
+                            
                         </tr>
             ';
             $no++;

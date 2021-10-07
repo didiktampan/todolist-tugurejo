@@ -37,14 +37,14 @@
                               <table class="table table-bordered table-hover">
                                   <thead>
                                       <tr>
-                                          <th>No</th>
+                                          <th col width="5%">No</th>
                                           <th>Complain</th>
-                                          <!-- <th>Status</th> -->
-                                          <th>Progres</th>
+                                          <th col width="10%">Status</th>
+                                          <th col width="20%">Progres</th>
                                           <!-- <th>Start Date</th> -->
-                                          <th>Release Date</th>
+                                          <th col width="10%">Release Date</th>
                                           <!-- <th>Deskripsi</th> -->
-                                          <th>Action</th>
+                                          <th col width="7%">Action</th>
                                       </tr>
                                   </thead>
                                   <tbody>
@@ -57,7 +57,17 @@
                                           <tr>
                                               <td><?= $no; ?></td>
                                               <td><?= $isi['DESC_TITLE']; ?></td>
-                                              <!-- <td><?= $isi['STATUS']; ?></td> -->
+                                              <td>
+                                                  <?php
+                                                    if ($isi['STATUS']  == 'O') {
+                                                        echo "<span class='badge badge-secondary'>Open</span>";
+                                                    } elseif ($isi['STATUS'] == 'P') {
+                                                        echo "<span class='badge badge-primary'>On-Progress</span>";
+                                                    } elseif ($isi['STATUS']  == 'C') {
+                                                        echo "<span class='badge badge-success'>Closet</span>";
+                                                    }
+                                                    ?>
+                                              </td>
                                               <td>
                                                   <div class="progress progress-sm">
                                                       <div class="progress-bar bg-primary" style="width: <?= $isi['PROGRESS']; ?>%"></div>
@@ -93,6 +103,7 @@
           </div>
           <!-- /.container-fluid -->
       </section>
+
   </div>
   <div class="modal fade show" id="modal-xl" aria-modal="true">
       <div class="modal-dialog modal-xl">
@@ -153,6 +164,13 @@
   <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' type='text/javascript'></script>
   <script>
       $(document).ready(function() {
+          $('#list').dataTable()
+          $('.new_productivity').click(function() {
+              uni_modal("<i class='fa fa-plus'></i> New Progress for: " + $(this).attr('data-task'), "manage_progress.php?pid=" + $(this).attr('data-pid') + "&tid=" + $(this).attr('data-tid'), 'large')
+          })
+      })
+      $(document).ready(function() {
+
           $(".btn-modal").on('click', function() {
               var id_ticket = $(this).data('id');
 

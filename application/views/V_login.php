@@ -225,9 +225,13 @@
           success: function(response) {
             if (response['data']['isLogin'] === true) {
               window.location.replace('<?php echo base_url('Dashboard') ?>');
+              // } else {
+              //   swal(response['status']['message'], '', 'info');
+              //   $('.overlay').css('display', 'none');
+              // }
             } else {
-              swal(response['status']['message'], '', 'info');
-              $('.overlay').css('display', 'none');
+              $('#login-form').prepend('<div class="alert alert-danger">Username or password is incorrect.</div>')
+              end_load();
             }
             // console.log(response);
           },
