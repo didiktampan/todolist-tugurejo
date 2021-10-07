@@ -44,7 +44,7 @@
                                                             } elseif ($isi['STATUS'] == 'P') {
                                                                 echo "<span class='badge badge-primary'>On-Progress</span>";
                                                             } elseif ($isi['STATUS']  == 'C') {
-                                                                echo "<span class='badge badge-success'>Closet</span>";
+                                                                echo "<span class='badge badge-success'>Closed</span>";
                                                             }
                                                             ?></td>
                                   </h5>
@@ -92,7 +92,7 @@
                                         } elseif ($isi['STATUS'] == 'P') {
                                             echo "<span class='badge badge-primary'>On-Progress</span>";
                                         } elseif ($isi['STATUS']  == 'C') {
-                                            echo "<span class='badge badge-success'>Closet</span>";
+                                            echo "<span class='badge badge-success'>Closed</span>";
                                         }
                                         ?>
                                   </h5>
@@ -130,7 +130,7 @@
                                                             } elseif ($isi['STATUS'] == 'P') {
                                                                 echo "<span class='badge badge-primary'>On-Progress</span>";
                                                             } elseif ($isi['STATUS']  == 'C') {
-                                                                echo "<span class='badge badge-success'>Closet</span>";
+                                                                echo "<span class='badge badge-success'>Closed</span>";
                                                             }
                                                             ?></h5>
                                   <div class="card-tools">
@@ -166,7 +166,7 @@
                                                             } elseif ($isi['STATUS'] == 'P') {
                                                                 echo "<span class='badge badge-primary'>On-Progress</span>";
                                                             } elseif ($isi['STATUS']  == 'C') {
-                                                                echo "<span class='badge badge-success'>Closet</span>";
+                                                                echo "<span class='badge badge-success'>Closed</span>";
                                                             }
                                                             ?></h5>
                                   </h5>
