@@ -78,9 +78,11 @@
                                               <!-- <td><?= $isi['DESC_COMPLAIN']; ?></td> -->
                                               <td style="text-align:center;">
 
-                                                  <button type="button" class="btn btn-default btn-modal btn-xs" data-id="<?= $isi['ID_TICKET'] ?>" data-toggle="modal" data-target="#modal-xl">
+                                                  <!-- <button type="button" class="btn btn-default btn-modal btn-xs" data-id="<?= $isi['ID_TICKET'] ?>" data-toggle="modal" data-target="#modal-xl">
                                                       <i class="fas fa-book-open"></i>
-                                                  </button>
+                                                  </button> -->
+                                                  <a href="<?= base_url('Report/detailpinjam/' . $isi['ID_TICKET'] . '?pinjam=yes'); ?>" class="btn btn-primary btn-sm" title="detail pinjam"><i class="fa fa-eye"></i></button></a>
+
                                               </td>
                                           </tr>
                                       <?php $no++;
