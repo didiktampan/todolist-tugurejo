@@ -201,7 +201,7 @@
                       <div class="col-md-12">
                           <div class="card card-primary">
                               <div class="card-header">
-                                  <h3 class="card-title" id="title">Card</h3>
+                                  <h3 class="card-title">Card</h3>
                               </div>
                               <div class="card-body">
                                   <div class="col-md-12">
@@ -235,16 +235,14 @@
   </div>
   <!-- jQuery -->
 
-  <!-- Ekko Lightbox -->
-  <script src="<?php echo base_url() ?>assets/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
-  <!-- overlayScrollbars -->
-  <script src="<?php echo base_url() ?>assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <!-- Filterizr-->
-  <script src="<?php echo base_url() ?>assets/plugins/filterizr/jquery.filterizr.min.js"></script>
+
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' type='text/javascript'></script>
   <script>
+      //   $(document).ready(function() {
+      //       $('#card').dataTable()
+      //   });
       $(document).ready(function() {
           $(".btn-modal").on('click', function() {
               var id_ticket = $(this).data('id');
@@ -266,6 +264,7 @@
           });
       });
       $(document).ready(function() {
+          $('#card').dataTable()
           $(".btn-modal").on('click', function() {
               var id_ticket = $(this).data('id');
 
@@ -284,5 +283,6 @@
               });
 
           });
+
       });
   </script>

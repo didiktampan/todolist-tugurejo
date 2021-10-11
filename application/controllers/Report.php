@@ -10,45 +10,51 @@ class Report extends CI_Controller
         $this->data['CI'] = &get_instance();
         $this->load->helper(array('form', 'url'));
         $this->load->model('M_tdDashboard');
+        if ($this->session->userdata('isLogin') != TRUE) {
+            redirect('Auth');
+        }
     }
-
-    /**
-     * Index Page for this controller.
-     *
-     * Maps to the following URL
-     * 		http://example.com/index.php/welcome
-     *	- or -
-     * 		http://example.com/index.php/welcome/index
-     *	- or -
-     * Since this controller is set as the default controller in
-     * config/routes.php, it's displayed at http://example.com/
-     *
-     * So any other public methods not prefixed with an underscore will
-     * map to /index.php/welcome/<method_name>
-     * @see https://codeigniter.com/user_guide/general/urls.html
-     */
 
     public function index()
     {
         if ($this->session->userdata('isLogin') != TRUE) {
             redirect('Auth');
         } else {
-            $this->data['pinjam'] = $this->db->query("SELECT TOP 100 * FROM SDP_COMPLAIN  ");
+            $this->data['pinjam'] = $this->db->query("SELECT * FROM SDP_COMPLAIN ORDER BY 'DATE_INPUT' DESC");
             $this->data['OpenComplain'] = $this->db->query("SELECT TOP 10 * FROM SDP_COMPLAIN WHERE STATUS = 'O' ORDER BY DATE_INPUT ASC");
             $this->data['ProgresComplain'] = $this->db->query("SELECT TOP 10 * FROM SDP_COMPLAIN WHERE STATUS = 'P' ORDER BY DATE_INPUT ASC");
             $this->data['ClosedComplain'] = $this->db->query("SELECT TOP 10 * FROM SDP_COMPLAIN WHERE STATUS = 'C' ORDER BY DATE_INPUT ASC");
-            // $this->data['komplen'] = $this->db->query("SELECT * FROM sdp_complain_card ORDER BY 'ID_TICKET'");
-            // echo json_encode($this->data['komplen']->result());
-            // return;
-            // $this->data['pinjam'] = $this->db->query(
-            //     "SELECT * FROM sdp_complain_card WHERE ID_TICKET => '$id'"
-            // );
-            // $this->data['komplen'] = $this->db->get_where('sdp_complain', ['ID_TICKET' => $id])->result_array();
             $this->template->load('layouts/Layouts', 'dashboard/V_report', $this->data);
         }
+        // $data['token'] = $token = AUTHORIZATION::private_token();
+        // $this->template->load('layouts/Layouts', 'dashboard/V_report2', $data);
     }
 
-
+    public function dataReport()
+    {
+        $final = [];
+        $result = [];
+        $data = $this->report->getReport();
+        $nomor = 0;
+        foreach ($data as $key => $value) {
+            $nomor++;
+            $result[] = [
+                'nomor' => $nomor,
+                'desctitle' => $value->DESC_TITLE,
+                'status' => $value->STATUS,
+                'progres' => $value->PROGRESS,
+                'datevalid' => $value->DATE_VALID,
+                'action' => '
+               
+             
+              '
+            ];
+        }
+        $final = [
+            'aaData' => $result
+        ];
+        return APIRESPONSE::response('', $final);
+    }
 
     public function detailpinjam()
     {
@@ -108,41 +114,5 @@ class Report extends CI_Controller
             $no++;
         }
         echo $html;
-    }
-    public function dataBangsal()
-    {
-        $projectid = $this->input->get('projectid');
-        $final = [];
-        $result = [];
-        $data = $this->bangsal->getBangsal($projectid);
-        $nomor = 0;
-        foreach ($data as $key => $value) {
-            $nomor++;
-            $result[] = [
-                'nomor' => $nomor,
-                'milestoneid' => $value->MILESTONEID,
-                'milestonename' => $value->MILESTONENAME,
-                'projectname' => $value->PROJECTNAME,
-                'action' => '
-                    <button class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="bottom" title="Edit"
-                    id="btn-edit"
-                    data-milestoneid="' . $value->MILESTONEID . '"
-                    data-milestonename="' . $value->MILESTONENAME . '"
-                    data-projectid="' . $value->PROJECTID . '"
-                    data-projectname="' . $value->PROJECTNAME . '">
-                        <i class="fa fa-edit"></i>
-                    </button>
-                    <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="bottom" title="Delete"
-                    id="btn-delete"
-                    data-milestoneid="' . $value->MILESTONEID . '"
-                    data-milestonename="' . $value->MILESTONENAME . '">
-                        <i class="fa fa-trash"></i>
-                    </button>'
-            ];
-        }
-        $final = [
-            'aaData' => $result
-        ];
-        return APIRESPONSE::response('', $final);
     }
 }
