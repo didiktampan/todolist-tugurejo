@@ -17,17 +17,17 @@ class Report extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('isLogin') != TRUE) {
-            redirect('Auth');
-        } else {
-            $this->data['pinjam'] = $this->db->query("SELECT * FROM SDP_COMPLAIN ORDER BY 'DATE_INPUT' DESC");
-            $this->data['OpenComplain'] = $this->db->query("SELECT TOP 10 * FROM SDP_COMPLAIN WHERE STATUS = 'O' ORDER BY DATE_INPUT ASC");
-            $this->data['ProgresComplain'] = $this->db->query("SELECT TOP 10 * FROM SDP_COMPLAIN WHERE STATUS = 'P' ORDER BY DATE_INPUT ASC");
-            $this->data['ClosedComplain'] = $this->db->query("SELECT TOP 10 * FROM SDP_COMPLAIN WHERE STATUS = 'C' ORDER BY DATE_INPUT ASC");
-            $this->template->load('layouts/Layouts', 'dashboard/V_report', $this->data);
-        }
-        // $data['token'] = $token = AUTHORIZATION::private_token();
-        // $this->template->load('layouts/Layouts', 'dashboard/V_report2', $data);
+        // if ($this->session->userdata('isLogin') != TRUE) {
+        //     redirect('Auth');
+        // } else {
+        //     $this->data['pinjam'] = $this->db->query("SELECT * FROM SDP_COMPLAIN ORDER BY 'DATE_INPUT' DESC");
+        //     $this->data['OpenComplain'] = $this->db->query("SELECT TOP 10 * FROM SDP_COMPLAIN WHERE STATUS = 'O' ORDER BY DATE_INPUT ASC");
+        //     $this->data['ProgresComplain'] = $this->db->query("SELECT TOP 10 * FROM SDP_COMPLAIN WHERE STATUS = 'P' ORDER BY DATE_INPUT ASC");
+        //     $this->data['ClosedComplain'] = $this->db->query("SELECT TOP 10 * FROM SDP_COMPLAIN WHERE STATUS = 'C' ORDER BY DATE_INPUT ASC");
+        //     $this->template->load('layouts/Layouts', 'dashboard/V_report', $this->data);
+        // }
+        $data['token'] = $token = AUTHORIZATION::private_token();
+        $this->template->load('layouts/Layouts', 'dashboard/V_report2', $data);
     }
 
     public function dataReport()
@@ -45,8 +45,11 @@ class Report extends CI_Controller
                 'progres' => $value->PROGRESS,
                 'datevalid' => $value->DATE_VALID,
                 'action' => '
-               
-             
+                <a  href="' . base_url('Report/detailpinjam/' . $value->ID_TICKET . '?pinjam=yes') . '" class="btn btn-primary btn-sm" title="detail pinjam">
+                <i class="fa fa-eye"></i>
+                </a>
+
+
               '
             ];
         }

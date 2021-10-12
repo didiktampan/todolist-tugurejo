@@ -33,7 +33,7 @@ class Report_model extends CI_Model
 
     public function getReport()
     {
-        $this->db->select('DESC_TITLE, STATUS, PROGRESS, DATE_VALID ')->from('SDP_COMPLAIN');
+        $this->db->select('DESC_TITLE, STATUS, PROGRESS, DATE_VALID,  ID_TICKET ')->from('SDP_COMPLAIN');
         // ->join('SDP_PROJECT b', 'a.PROJECTID=b.PROJECTID', 'inner');
         // if ($projectid !== '') {
         // $this->db->where('a.projectid', $projectid);

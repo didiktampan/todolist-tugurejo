@@ -137,6 +137,7 @@ $autoload['language'] = array();
 $autoload['model'] = array(
     'AuthModel' => 'AuthModel',
     'api/Report_model' => 'report',
+    'api/Project_model' => 'project',
     'api/User_model' => 'user',
     'api/Bangsal_model' => 'bangsal',
     'api/Registrasi_model' => 'registrasi',

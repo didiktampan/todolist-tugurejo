@@ -16,6 +16,12 @@
                     <p>Report</p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="<?php echo site_url('Project') ?>" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Project</p>
+                </a>
+            </li>
             <!-- <li class="nav-item">
                 <a href="<?php echo site_url('ComplainCard') ?>" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
