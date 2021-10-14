@@ -50,12 +50,32 @@ class Project extends CI_Controller
                 $statusproject = '<span class="badge badge-success">' . $value->PROJECTSTS . '</span>';
             }
 
-            if ($value->PROGRESS === '.00') {
-                $statust = '<span class="progress-bar progress bg-primary"> ' . $value->PROGRESS . '</span>';
-            } else if ($value->PROGRESS === '100.00') {
-                $statust = '<span class="progress-bar progress-sm bg-success">' . '</span>';
-            } else {
-                $statust = '<span class="progress-bar progress-sm bg-primary">' . '</span>';
+            $value->PROGRESS === 100.00;
+            if ($value->PROGRESS > 75.00) {
+                $progres = '<div class="progress progress-sm">
+                            <div class="progress-bar bg-success" style="width:' . $value->PROGRESS . '%">  
+                        </div>
+                    </div>';
+            } else if ($value->PROGRESS > 50.00) {
+                $progres = '<div class="progress progress-sm">
+                            <div class="progress-bar bg-primary" style="width:' . $value->PROGRESS . '%">
+                        </div>
+                    </div>';
+            } else if ($value->PROGRESS > 25.00) {
+                $progres = '<div class="progress progress-sm">
+                            <div class="progress-bar bg-primary" style="width:' . $value->PROGRESS . '%">
+                        </div>
+                    </div>';
+            } else if ($value->PROGRESS > 0) {
+                $progres = '<div class="progress progress-sm">
+                            <div class="progress-bar bg-primary" style="width:' . $value->PROGRESS . '%">
+                        </div>
+                    </div>';
+            } else if ($value->PROGRESS < 1) {
+                $progres = '<div class="progress progress-sm">
+                            <div class="progress-bar bg-danger" style="width:0%">
+                        </div>
+                    </div>';
             }
 
             $result[] = [
@@ -64,7 +84,7 @@ class Project extends CI_Controller
                 'projectname' => $value->PROJECTNAME,
                 'pic' => $value->PIC,
                 'projectsts' => $statusproject,
-                'progress' => $statust,
+                'progress' => $progres,
                 'enginer' => $value->ENGINEER,
                 'startdate' => $value->STARTDATE,
                 'enddate' => $value->ENDDATE,

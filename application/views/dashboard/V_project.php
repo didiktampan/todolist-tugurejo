@@ -89,10 +89,37 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Data Project</h3> &nbsp; <a class="btn btn-primary btn-xs" href="#" id="btn-tambah">Tambah</a>
+                            <h3 class="card-title">Data Project</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            <!-- <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Tanggal Awal:</label>
+                                        <div class="input-group date" id="tglawal" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input color-text vaksin1" value="<?php echo date('d/m/Y') ?>" data-target="#tglawal" name="tglawal_text" id="tglawal_text" placeholder="Tanggal Awal" />
+                                            <div class="input-group-append" data-target="#tglawal" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Tanggal Akhir:</label>
+                                        <div class="input-group date" id="tglakhir" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input color-text vaksin1" value="<?php echo date('d/m/Y') ?>" data-target="#tglakhir" name="tglakhir_text" id="tglakhir_text" placeholder="Tanggal Awal" />
+                                            <div class="input-group-append" data-target="#tglakhir" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" style="padding-top: 35px;">
+                                    <button class="btn btn-primary btn-sm" id="btnsearch"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div> -->
                             <table id="tbProject" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
