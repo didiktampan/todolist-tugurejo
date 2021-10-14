@@ -24,7 +24,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="title">Form Milestone</h4>
+                    <h4 class="modal-title" id="title">Form Project</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -34,25 +34,40 @@
                         <div class="col-md-12">
                             <div class="card card-primary">
                                 <div class="card-header">
-                                    <h3 class="card-title">Tambah Milestone</h3>
+                                    <h3 class="card-title">Detail Project</h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Nama Milestone :</label>
-                                            <input type="text" placeholder="Nama Bangsal" name="milestonename" id="milestonename" autocomplete="off" class="form-control">
-                                            <input type="hidden" name="milestoneid_edt" id="milestoneid_edt">
+                                            <label>Nama Project :</label>
+                                            <input type="text" placeholder="Nama Project" name="projectname" id="projectname" autocomplete="off" class="form-control" readonly>
+                                            <!-- <input type="hidden" name="projectid_edt" id="projectid_edt"> -->
                                         </div>
                                     </div>
-                                    <!-- <?php if ($projectid === '') { ?>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Project</label>
-                        <select class="form-control select2" style="width: 100%;" id="projectid" name="projectid">
-                        </select>
-                      </div>
-                    </div>
-                  <?php } ?> -->
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>PIC Project :</label>
+                                            <input type="text" placeholder="Nama Project" name="pic" id="pic" autocomplete="off" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Developer :</label>
+                                            <input type="text" placeholder="Nama Project" name="enginer" id="enginer" autocomplete="off" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Tanggal Mulai :</label>
+                                            <input type="text" placeholder="Nama Project" name="startdate" id="startdate" autocomplete="off" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Tanggal Selesai :</label>
+                                            <input type="text" placeholder="Nama Project" name="enddate" id="enddate" autocomplete="off" class="form-control" readonly>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +75,7 @@
                 </div>
                 <div class="modal-footer text-right">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="btn_save">Save changes</button>
+                    <!-- <button type="button" class="btn btn-primary" id="btn_save">Save changes</button> -->
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -81,12 +96,13 @@
                             <table id="tbProject" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>No.</th>
-                                        <th>Nama Project</th>
-                                        <th>Status</th>
+                                        <th col width="5%">No.</th>
+                                        <th col width="25%">Nama Project</th>
+                                        <th col width="8%">PIC</th>
+                                        <th col width="5%">Status</th>
                                         <th>Progres</th>
-                                        <th>Developer</th>
-                                        <th>Action</th>
+                                        <th col width="20%">Developer</th>
+                                        <th col width="5%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -94,6 +110,7 @@
                                     <tr>
                                         <th>No.</th>
                                         <th>Nama Project</th>
+                                        <th>PIC</th>
                                         <th>Status</th>
                                         <th>Progres</th>
                                         <th>Developer</th>
@@ -266,6 +283,9 @@
                         "mData": "projectname"
                     },
                     {
+                        "mData": "pic"
+                    },
+                    {
                         "mData": "projectsts"
                     },
                     {
@@ -312,15 +332,21 @@
             $('#modalAdd').modal('show');
         })
 
-        $('#tbBangsal').on('click', '#btn-edit', function() {
-            const milestoneid = $(this).data('milestoneid');
-            const milestonename = $(this).data('milestonename');
+        $('#tbProject').on('click', '#btn-detail', function() {
             const projectid = $(this).data('projectid');
             const projectname = $(this).data('projectname');
-            $('#title').html('Edit Milestone')
-            $('#milestoneid_edt').val(milestoneid);
-            $('#milestonename').val(milestonename);
-            $('#projectid').select2("val", "");
+            const pic = $(this).data('pic');
+            const enginer = $(this).data('enginer');
+            const startdate = $(this).data('startdate');
+            const enddate = $(this).data('enddate');
+            $('#title').html('Detail Project')
+            $('#projectid_edt').val(projectid);
+            $('#projectname').val(projectname);
+            $('#pic').val(pic);
+            $('#enginer').val(enginer);
+            $('#startdate').val(startdate);
+            $('#enddate').val(enddate);
+            // $('#projectid').select2("val", "");
             $('#modalBangsal').modal('show');
         })
 

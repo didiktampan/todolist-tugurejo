@@ -38,11 +38,56 @@ class Report extends CI_Controller
         $nomor = 0;
         foreach ($data as $key => $value) {
             $nomor++;
+
+            if ($value->STATUS === 'D') {
+                $status = '<span class="badge badge-danger">' . $value->STATUS . '</span>';
+            } else if ($value->STATUS === 'P') {
+                $status = '<span class="badge badge-success">' . $value->STATUS . '</span>';
+            } else if ($value->STATUS === 'B') {
+                $status = '<span class="badge badge-primary">' . $value->STATUS . '</span>';
+            } else {
+                $status = '<span class="badge badge-success">' . $value->STATUS . '</span>';
+            }
+
+            // if ($value->PROGRESS == '.00') {
+            //     $content = '<span class="progress-bar progress-sm bg-success" >' . $value->PROGRESS . '</span>';
+            // } else if ($value->PROGRESS  == '50.00') {
+            //     $content = '<span class="progress-bar progress-sm bg-success">' . $value->PROGRESS . '</span>';
+            // } else {
+            //     $content = '<span class="progress-bar progress-sm bg-primary">' . $value->PROGRESS . '</span>';
+            // }
+
+            $value->PROGRESS === 100.00;
+            if ($value->PROGRESS > 75.00) {
+                $progres = '<div class="progress progress-sm">
+                            <div class="progress-bar bg-lime color-palette" style="width:' . $value->PROGRESS . '%">  
+                        </div>
+                    </div>';
+            } else if ($value->PROGRESS > 50.00) {
+                $progres = '<div class="progress progress-sm">
+                            <div class="progress-bar bg-primary" style="width:' . $value->PROGRESS . '%">
+                        </div>
+                    </div>';
+            } else if ($value->PROGRESS > 25.00) {
+                $progres = '<div class="progress progress-sm">
+                            <div class="progress-bar bg-warning" style="width:' . $value->PROGRESS . '%">
+                        </div>
+                    </div>';
+            } else if ($value->PROGRESS > 0) {
+                $progres = '<div class="progress progress-sm">
+                            <div class="progress-bar bg-danger" style="width:' . $value->PROGRESS . '%">
+                        </div>
+                    </div>';
+            } else {
+                $progres = '<span class="badge badge-success" style="width:' . $value->PROGRESS . '%">' . '</span>';
+            }
+
+
             $result[] = [
                 'nomor' => $nomor,
                 'desctitle' => $value->DESC_TITLE,
-                'status' => $value->STATUS,
-                'progres' => $value->PROGRESS,
+                'status' => $status,
+                'progres' => $progres,
                 'datevalid' => $value->DATE_VALID,
                 'action' => '
                 <a  href="' . base_url('Report/detailpinjam/' . $value->ID_TICKET . '?pinjam=yes') . '" class="btn btn-primary btn-sm" title="detail pinjam">

@@ -82,12 +82,12 @@
                             <table id="tbReport" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>No.</th>
-                                        <th>Complain</th>
-                                        <th>Status</th>
+                                        <th col width="5%">No.</th>
+                                        <th col width="30%">Complain</th>
+                                        <th col width="8%">Status</th>
                                         <th>Progres</th>
-                                        <th>Release</th>
-                                        <th>Action</th>
+                                        <th col width="5%">Release</th>
+                                        <th col width="5%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>

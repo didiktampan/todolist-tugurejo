@@ -59,7 +59,16 @@
                                             </td>
                                             <td>
                                                 <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-primary" style="width: <?= $isi['PROGRESS']; ?>%"></div>
+                                                    <div class="progress-bar bg-primary" style="width: <?= $isi['PROGRESS']; ?>%">
+                                                        <?php
+                                                        if ($isi['PROGRESS']  == '.00') {
+                                                            echo "<span class='badge badge-secondary' ></span>";
+                                                        } elseif ($isi['PROGRESS'] == '50.00') {
+                                                            echo "<span class='badge badge-primary'></span>";
+                                                        } elseif ($isi['PROGRESS']  == '100.00') {
+                                                            echo "<span class='badge badge-success'></span>";
+                                                        }
+                                                        ?></div>
                                                 </div><?= $isi['PROGRESS']; ?>
                                             </td>
                                             <td><?= $isi['DUEDATE']; ?></td>
