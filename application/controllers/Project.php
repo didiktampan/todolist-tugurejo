@@ -35,17 +35,17 @@ class Project extends CI_Controller
 
     public function dataProject()
     {
-        $id = $this->input->get('id');
+        // $id = $this->input->get('id');
         $final = [];
         $result = [];
         $data = $this->project->getProject();
-        // $detail = $this->project->getProjectdetail($id);
         $nomor = 0;
         // foreach ($detail as $key => $values) {
         // }
         foreach ($data as $key => $value) {
             $nomor++;
-            $detail = $this->project->getProjectdetail($id);
+
+            $detail = $this->project->getProjectdetail($value->PROJECTID);
 
             if ($value->PROJECTSTS === 'Open') {
                 $statusproject = '<span class="badge badge-primary">' . $value->PROJECTSTS . '</span>';
@@ -83,6 +83,34 @@ class Project extends CI_Controller
                     </div>';
             }
 
+            $detail->PROGRESS === 100.00;
+            if ($detail->PROGRESS > 75.00) {
+                $progres = '<div class="progress progress-sm">
+                            <div class="progress-bar bg-success" style="width:' . $detail->PROGRESS . '%">  
+                        </div>
+                    </div>';
+            } else if ($detail->PROGRESS > 50.00) {
+                $progres = '<div class="progress progress-sm">
+                            <div class="progress-bar bg-primary" style="width:' . $detail->PROGRESS . '%">
+                        </div>
+                    </div>';
+            } else if ($detail->PROGRESS > 25.00) {
+                $progres = '<div class="progress progress-sm">
+                            <div class="progress-bar bg-primary" style="width:' . $detail->PROGRESS . '%">
+                        </div>
+                    </div>';
+            } else if ($detail->PROGRESS > 0) {
+                $progres = '<div class="progress progress-sm">
+                            <div class="progress-bar bg-primary" style="width:' . $detail->PROGRESS . '%">
+                        </div>
+                    </div>';
+            } else if ($detail->PROGRESS < 1) {
+                $progres = '<div class="progress progress-sm">
+                            <div class="progress-bar bg-danger" style="width:0%">
+                        </div>
+                    </div>';
+            }
+
             $result[] = [
                 'nomor' => $nomor,
                 'projectid' => $value->PROJECTID,
@@ -100,10 +128,20 @@ class Project extends CI_Controller
                     id="btn-detail"
                     data-projectid="' . $detail->PROJECTID . '"
                     data-projectname="' . $detail->PROJECTNAME . '"
-                    data-projectsts="' . $detail->PROJECTSTS . '">
+                    data-projectdesc="' . $detail->PROJECTDESC . '"
+                    data-tglsuratmasuk="' . $detail->TGLSURATMASUK . '"
+                    data-nosurat="' . $detail->NOSURAT . '"
+                    data-tglsurat="' . $detail->TGLSURAT . '"
+                    data-pic="' . $detail->PIC . '"
+                    data-progres="' . $detail->PROGRESS . '"
+                    data-projectsts="' . $detail->PROJECTSTS . '"
+                    data-startdate="' . $detail->STARTDATE . '"
+                    data-enddate="' . $detail->ENDDATE . '">
                 <i class="fa fa-book-open"></i>
               '
             ];
+            // print_r($detail);
+            // die();
         }
         $final = [
             'aaData' => $result

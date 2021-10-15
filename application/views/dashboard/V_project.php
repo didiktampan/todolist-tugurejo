@@ -21,7 +21,7 @@
 
     <!-- modal bangsal -->
     <div class="modal fade show" id="modalBangsal" aria-modal="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg" style="max-width:1200px;">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="title">Form Project</h4>
@@ -39,21 +39,57 @@
                                 <div class="card-body">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Nama Project :</label>
-                                            <input type="text" placeholder="Nama Project" name="projectname" id="projectname" autocomplete="off" class="form-control" readonly>
-                                            <!-- <input type="hidden" name="projectid_edt" id="projectid_edt"> -->
+                                            <label>ID Project :</label>
+                                            <input type="text" placeholder="Nama Project" name="projectid_edt" id="projectid_edt" autocomplete="off" class="form-control" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>status Project :</label>
-                                            <input type="text" placeholder="Nama Project" name="projectsts" id="projectsts" autocomplete="off" class="form-control" readonly>
+                                            <label>Nama Project :</label>
+                                            <input type="text" placeholder="Nama Project" name="projectname" id="projectname" autocomplete="off" class="form-control" readonly>
+                                            <!-- <input type="hidden" name="projectid_edt" id=""> -->
                                         </div>
                                     </div>
-                                    <!-- <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Developer :</label>
-                                            <input type="text" placeholder="Nama Project" name="enginer" id="enginer" autocomplete="off" class="form-control" readonly>
+                                            <label>Deskripsi Project :</label>
+                                            <input type="text" placeholder="Nama Project" name="projectdesc" id="projectdesc" autocomplete="off" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Tanggal Surat Masuk :</label>
+                                            <input type="text" placeholder="Nama Project" name="tglsuratmasuk" id="tglsuratmasuk" autocomplete="off" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Nomer Surat :</label>
+                                            <input type="text" placeholder="Nama Project" name="nosurat" id="nosurat" autocomplete="off" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Tanggal Surat :</label>
+                                            <input type="text" placeholder="Nama Project" name="tglsurat" id="tglsurat" autocomplete="off" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>PIC Project :</label>
+                                            <input type="text" placeholder="Nama Project" name="pic" id="pic" autocomplete="off" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Progres Project :</label>
+                                            <input type="text" placeholder="Nama Project" name="progres" id="progres" autocomplete="off" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Status Project :</label>
+                                            <input type="text" placeholder="Nama Project" name="projectsts" id="projectsts" autocomplete="off" class="form-control" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -67,7 +103,7 @@
                                             <label>Tanggal Selesai :</label>
                                             <input type="text" placeholder="Nama Project" name="enddate" id="enddate" autocomplete="off" class="form-control" readonly>
                                         </div>
-                                    </div> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -362,11 +398,27 @@
         $('#tbProject').on('click', '#btn-detail', function() {
             const projectid = $(this).data('projectid');
             const projectname = $(this).data('projectname');
+            const projectdesc = $(this).data('projectdesc');
+            const tglsuratmasuk = $(this).data('tglsuratmasuk');
+            const nosurat = $(this).data('nosurat');
+            const tglsurat = $(this).data('tglsurat');
+            const pic = $(this).data('pic');
+            const progres = $(this).data('progres');
             const projectsts = $(this).data('projectsts');
+            const startdate = $(this).data('startdate');
+            const enddate = $(this).data('enddate');
             $('#title').html('Detail Project')
             $('#projectid_edt').val(projectid);
             $('#projectname').val(projectname);
+            $('#projectdesc').val(projectdesc);
+            $('#tglsuratmasuk').val(tglsuratmasuk);
+            $('#nosurat').val(nosurat);
+            $('#tglsurat').val(tglsurat);
+            $('#pic').val(pic);
+            $('#progres').val(progres);
             $('#projectsts').val(projectsts);
+            $('#startdate').val(startdate);
+            $('#enddate').val(enddate);
             // $('#projectid').select2("val", "");
             $('#modalBangsal').modal('show');
         })
