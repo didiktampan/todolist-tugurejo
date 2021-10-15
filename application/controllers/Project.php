@@ -35,13 +35,18 @@ class Project extends CI_Controller
 
     public function dataProject()
     {
-        // $projectid = $this->input->get('projectid');
+        $id = $this->input->get('id');
         $final = [];
         $result = [];
         $data = $this->project->getProject();
+        // $detail = $this->project->getProjectdetail($id);
         $nomor = 0;
+        // foreach ($detail as $key => $values) {
+        // }
         foreach ($data as $key => $value) {
             $nomor++;
+            $detail = $this->project->getProjectdetail($id);
+
             if ($value->PROJECTSTS === 'Open') {
                 $statusproject = '<span class="badge badge-primary">' . $value->PROJECTSTS . '</span>';
             } else if ($value->PROJECTSTS === 'Selesai') {
@@ -93,12 +98,9 @@ class Project extends CI_Controller
                     <i class="fa fa-eye"></i></a>
                     <button class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="bottom" title="Detail"
                     id="btn-detail"
-                    data-projectid="' . $value->PROJECTID . '"
-                    data-projectname="' . $value->PROJECTNAME . '"
-                    data-pic="' . $value->PIC . '"
-                    data-enginer="' . $value->ENGINEER . '"
-                    data-startdate="' . $value->STARTDATE . '"
-                    data-enddate="' . $value->ENDDATE . '">
+                    data-projectid="' . $detail->PROJECTID . '"
+                    data-projectname="' . $detail->PROJECTNAME . '"
+                    data-projectsts="' . $detail->PROJECTSTS . '">
                 <i class="fa fa-book-open"></i>
               '
             ];

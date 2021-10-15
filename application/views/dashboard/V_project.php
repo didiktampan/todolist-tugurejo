@@ -46,11 +46,11 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>PIC Project :</label>
-                                            <input type="text" placeholder="Nama Project" name="pic" id="pic" autocomplete="off" class="form-control" readonly>
+                                            <label>status Project :</label>
+                                            <input type="text" placeholder="Nama Project" name="projectsts" id="projectsts" autocomplete="off" class="form-control" readonly>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <!-- <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Developer :</label>
                                             <input type="text" placeholder="Nama Project" name="enginer" id="enginer" autocomplete="off" class="form-control" readonly>
@@ -67,7 +67,7 @@
                                             <label>Tanggal Selesai :</label>
                                             <input type="text" placeholder="Nama Project" name="enddate" id="enddate" autocomplete="off" class="form-control" readonly>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -362,17 +362,11 @@
         $('#tbProject').on('click', '#btn-detail', function() {
             const projectid = $(this).data('projectid');
             const projectname = $(this).data('projectname');
-            const pic = $(this).data('pic');
-            const enginer = $(this).data('enginer');
-            const startdate = $(this).data('startdate');
-            const enddate = $(this).data('enddate');
+            const projectsts = $(this).data('projectsts');
             $('#title').html('Detail Project')
             $('#projectid_edt').val(projectid);
             $('#projectname').val(projectname);
-            $('#pic').val(pic);
-            $('#enginer').val(enginer);
-            $('#startdate').val(startdate);
-            $('#enddate').val(enddate);
+            $('#projectsts').val(projectsts);
             // $('#projectid').select2("val", "");
             $('#modalBangsal').modal('show');
         })

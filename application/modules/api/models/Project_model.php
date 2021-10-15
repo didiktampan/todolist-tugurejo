@@ -44,6 +44,12 @@ class Project_model extends CI_Model
         return $data->result();
     }
 
+    public function getProjectdetail($id)
+    {
+        $data = $this->db->query("EXEC SP_SIMADUN_WEB_PROJECTDTL @PROJECTID = '$id'");
+        return $data->result();
+    }
+
     public function updateBangsal($obj, $milestoneid)
     {
         $update = $this->db->where('milestoneid', $milestoneid)->update('SDP_MILESTONE', $obj);
