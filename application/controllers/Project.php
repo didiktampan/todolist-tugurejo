@@ -36,17 +36,21 @@ class Project extends CI_Controller
     public function dataProject()
     {
         // $id = $this->input->get('id');
+        // $tglawal = $this->input->get('awal');
+        // $awal = str_replace('/', '-', $tglawal);
+        // $tglakhir = $this->input->get('akhir');
+        // $akhir = str_replace('/', '-', $tglakhir);
+        // $search = $this->input->get('search');
+        // $data = $this->project->getDataPasien(date('Y-m-d', strtotime($awal)), date('Y-m-d', strtotime($akhir)),);
+
         $final = [];
         $result = [];
         $data = $this->project->getProject();
         $nomor = 0;
-        // foreach ($detail as $key => $values) {
-        // }
+
         foreach ($data as $key => $value) {
             $nomor++;
-
             $detail = $this->project->getProjectdetail($value->PROJECTID);
-
             if ($value->PROJECTSTS === 'Open') {
                 $statusproject = '<span class="badge badge-primary">' . $value->PROJECTSTS . '</span>';
             } else if ($value->PROJECTSTS === 'Selesai') {
@@ -83,33 +87,9 @@ class Project extends CI_Controller
                     </div>';
             }
 
-            $detail->PROGRESS === 100.00;
-            if ($detail->PROGRESS > 75.00) {
-                $progres = '<div class="progress progress-sm">
-                            <div class="progress-bar bg-success" style="width:' . $detail->PROGRESS . '%">  
-                        </div>
-                    </div>';
-            } else if ($detail->PROGRESS > 50.00) {
-                $progres = '<div class="progress progress-sm">
-                            <div class="progress-bar bg-primary" style="width:' . $detail->PROGRESS . '%">
-                        </div>
-                    </div>';
-            } else if ($detail->PROGRESS > 25.00) {
-                $progres = '<div class="progress progress-sm">
-                            <div class="progress-bar bg-primary" style="width:' . $detail->PROGRESS . '%">
-                        </div>
-                    </div>';
-            } else if ($detail->PROGRESS > 0) {
-                $progres = '<div class="progress progress-sm">
-                            <div class="progress-bar bg-primary" style="width:' . $detail->PROGRESS . '%">
-                        </div>
-                    </div>';
-            } else if ($detail->PROGRESS < 1) {
-                $progres = '<div class="progress progress-sm">
-                            <div class="progress-bar bg-danger" style="width:0%">
-                        </div>
-                    </div>';
-            }
+            $value->STARTDATE === $tanggalmulai = date('d/m/Y', strtotime($value->STARTDATE));
+            $value->ENDDATE === $tanggalselesai = date('d/m/Y', strtotime($value->ENDDATE));
+            $value->PROJECTSTS === 'O' ? $open = 'Open' : $open = 'Open';
 
             $result[] = [
                 'nomor' => $nomor,
@@ -122,7 +102,7 @@ class Project extends CI_Controller
                 'startdate' => $value->STARTDATE,
                 'enddate' => $value->ENDDATE,
                 'action' => '
-                    <a  href="' . base_url('api/Project/detailpinjam/' . $value->PROJECTID . '?pinjam=yes') . '" class="btn btn-primary btn-xs" title="detail pinjam">
+                <a  href="' . base_url('Milestone/detailpinjam/' . $value->PROJECTID . '?pinjam=yes') . '" class="btn btn-primary btn-xs" title="detail pinjam">
                     <i class="fa fa-eye"></i></a>
                     <button class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="bottom" title="Detail"
                     id="btn-detail"
@@ -134,11 +114,10 @@ class Project extends CI_Controller
                     data-tglsurat="' . $detail->TGLSURAT . '"
                     data-pic="' . $detail->PIC . '"
                     data-progres="' . $detail->PROGRESS . '"
-                    data-projectsts="' . $detail->PROJECTSTS . '"
-                    data-startdate="' . $detail->STARTDATE . '"
-                    data-enddate="' . $detail->ENDDATE . '">
-                <i class="fa fa-book-open"></i>
-              '
+                    data-projectsts="' . $open . '"
+                    data-startdate="' . $tanggalmulai . '"
+                    data-enddate="' . $tanggalselesai . '">
+                <i class="fa fa-book-open"></i>'
             ];
             // print_r($detail);
             // die();
@@ -147,6 +126,64 @@ class Project extends CI_Controller
             'aaData' => $result
         ];
         return APIRESPONSE::response('', $final);
+    }
+
+    public function detailpinjam()
+    {
+
+        $id = $this->uri->segment(3);
+        // echo $id;
+        // return;
+        // $this->data['idbo'] = $this->session->userdata('ses_id');
+        // $id = $this->db->get('ID_TICKET');
+        // if ($this->session->userdata('TIPUSER') == 'DEV') {
+        // $cek = $this->db->get_where('SDP_PROJECT', [
+        //     'PROJECTID' => $id,
+        // ]);
+
+        $final = [];
+        $result = [];
+        $data =  $this->project->getMilestone($id);
+        $nomor = 0;
+        foreach ($data as $key => $value) {
+            $nomor++;
+            $result[] = [
+                'nomor' => $nomor,
+                'milestonename' => $value->MILESTONENAME,
+                'idticket' => $value->ID_TICKET,
+                'action' => ''
+            ];
+        }
+        $final = [
+            'aaData' => $result
+        ];
+        return APIRESPONSE::response('', $final);
+
+
+
+        // $data = $cek->num_rows();
+        // $this->data['komplen'] = $cek->result_array();
+        // print_r($data);
+        // die();
+        // if ($data > 0) {
+        // $this->data['pinjam'] = $this->db->query(
+        // "SELECT TOP 200 * FROM SDP_COMPLAIN_PIC WHERE ID_TICKET = '$id'"
+        // )->result_array();
+
+        // print_r($this->data['pinjam']);
+        // die();
+        // } else {
+        // echo '<script>alert("DETAIL TIDAK DITEMUKAN");window.location="' . base_url('Project') . '"</script>';
+        // }
+        // } else {
+        // $data = $this->M_Admin->CountTableId('sdp_complain', 'ID_TICKET', $id);
+        // if ($data > 0) {
+        //     $this->data['pinjam'] = $this->db->query("SELECT * FROM sdp_complain WHERE ID_TICKET = '$id'")->row();
+        // } else {
+        //     echo '<script>alert("DETAIL TIDAK DITEMUKAN");window.location="' . base_url('transaksi') . '"</script>';
+        // }
+        // }
+        // $this->template->load('layouts/Layouts', 'dashboard/V_reportPIC', $this->data);
     }
 }
 

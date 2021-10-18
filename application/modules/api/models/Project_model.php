@@ -43,6 +43,18 @@ class Project_model extends CI_Model
         $data = $this->db->query("EXEC SP_SIMADUN_WEB_PROJECTLIST");
         return $data->result();
     }
+    public function getMilestone($id)
+    {
+        // $this->db->select('a.MILESTONEID, a.MILESTONENAME, a.PROJECTID, b.PROJECTNAME')->from('SDP_MILESTONE a')
+        //     ->join('SDP_PROJECT b', 'a.PROJECTID=b.PROJECTID', 'inner');
+        // if ($projectid !== '') {
+        //     $this->db->where('a.projectid', $projectid);
+        // }
+        // $data = $this->db->get();
+        // return $data->result();
+        $data = $this->db->query("EXEC SP_SIMADUN_WEB_PROJECT_TCKT @PROJECTID = '$id'");
+        return $data->result();
+    }
 
     public function getProjectdetail($projectid)
     {
@@ -54,6 +66,15 @@ class Project_model extends CI_Model
     {
         $update = $this->db->where('milestoneid', $milestoneid)->update('SDP_MILESTONE', $obj);
         return $update;
+    }
+    public function getDataPasien($awal, $akhir)
+    {
+        // $data = $this->db->get('CORONA_VAKSIN');
+        // $kode_faskes = $this->session->userdata('kode_faskes');
+        $data = $this->db->select('*, DATE_FORMAT(STARTDATE, "%d-%m-%Y") as tglinputnew')
+            ->where('DATE_FORMAT(STARTDATE, "%Y-%m-%d") >=', $awal)->where('DATE_FORMAT(STARTDATE, "%Y-%m-%d") <=', $akhir)
+            ->order_by('STARTDATE', 'desc')->get('SP_SIMADUN_WEB_PROJECTLIST');
+        return $data->result();
     }
 }
 

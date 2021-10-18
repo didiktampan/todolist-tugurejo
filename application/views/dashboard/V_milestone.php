@@ -196,9 +196,7 @@
                                             <th col width="5%">No.</th>
                                             <th col width="25%">Nama Project</th>
                                             <th col width="8%">PIC</th>
-                                            <th col width="5%">Status</th>
-                                            <th>Progres</th>
-                                            <th col width="20%">Developer</th>
+
                                             <th col width="5%">Action</th>
                                         </tr>
                                     </thead>
@@ -208,9 +206,7 @@
                                             <th>No.</th>
                                             <th>Nama Project</th>
                                             <th>PIC</th>
-                                            <th>Status</th>
-                                            <th>Progres</th>
-                                            <th>Developer</th>
+
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -409,19 +405,10 @@
                         className: "text-center"
                     },
                     {
-                        "mData": "projectname"
+                        "mData": "milestonename"
                     },
                     {
-                        "mData": "pic"
-                    },
-                    {
-                        "mData": "projectsts"
-                    },
-                    {
-                        "mData": "progress"
-                    },
-                    {
-                        "mData": "enginer"
+                        "mData": "idticket"
                     },
                     {
                         "mData": "action"
