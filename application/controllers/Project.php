@@ -102,8 +102,8 @@ class Project extends CI_Controller
                 'startdate' => $value->STARTDATE,
                 'enddate' => $value->ENDDATE,
                 'action' => '
-                <a  href="' . base_url('Milestone/detailpinjam/' . $value->PROJECTID . '?pinjam=yes') . '" class="btn btn-primary btn-xs" title="detail pinjam">
-                    <i class="fa fa-eye"></i></a>
+                    <a  href="' . base_url('Milestone/' . '?id=' . $value->PROJECTID) . '" class="btn btn-success btn-xs" title="detail milestone">
+                    Milestone</a>
                     <button class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="bottom" title="Detail"
                     id="btn-detail"
                     data-projectid="' . $detail->PROJECTID . '"
@@ -116,8 +116,8 @@ class Project extends CI_Controller
                     data-progres="' . $detail->PROGRESS . '"
                     data-projectsts="' . $open . '"
                     data-startdate="' . $tanggalmulai . '"
-                    data-enddate="' . $tanggalselesai . '">
-                <i class="fa fa-book-open"></i>'
+                    data-enddate="' . $tanggalselesai . '"
+                    >Detail</button>'
             ];
             // print_r($detail);
             // die();

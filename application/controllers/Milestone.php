@@ -8,6 +8,7 @@ class Milestone extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
         if ($this->session->userdata('isLogin') != TRUE) {
             redirect('Auth');
         }
@@ -15,82 +16,77 @@ class Milestone extends CI_Controller
 
     public function index()
     {
-
+        $data['id_pic'] = $this->input->get('id_pic');
+        $data['id'] = $this->input->get('id');
         $data['token'] = $token = AUTHORIZATION::private_token();
         $this->template->load('layouts/Layouts', 'dashboard/V_milestone', $data);
-        // $this->template->load('layouts/Layouts', 'dashboard/td_Dashboard', $data);
+        //print_r($data);
+        // die()
     }
-
-    // public function select2RS()
-    // {
-    //     $projectname = $this->input->get('search');
-    //     $projectid = $this->session->userdata('projectid');
-    //     $data = $this->bangsal->searchBangsal($projectname, $projectid);
-    //     // $result = [];
-    //     // foreach ($data as $key => $value) {
-    //     //     $result[] = ['id' => $value->kode_bangsal, 'text' => $value->nama_bangsal];
-    //     // }
-    //     return APIRESPONSE::response('', $data);
-    // }
-
 
     public function detailpinjam()
     {
-
         $id = $this->uri->segment(3);
-        // echo $id;
-        // return;
-        // $this->data['idbo'] = $this->session->userdata('ses_id');
-        // $id = $this->db->get('ID_TICKET');
-        // if ($this->session->userdata('TIPUSER') == 'DEV') {
-        // $cek = $this->db->get_where('SDP_PROJECT', [
-        //     'PROJECTID' => $id,
-        // ]);
-
         $final = [];
         $result = [];
-        $data =  $this->project->getMilestone($id);
+        $data =  $this->milestone->getMilestone($id);
         $nomor = 0;
         foreach ($data as $key => $value) {
             $nomor++;
+            $card = $this->card->getPic($value->ID_PIC);
             $result[] = [
                 'nomor' => $nomor,
                 'milestonename' => $value->MILESTONENAME,
+                'startdate' => $value->STARTDATE,
+                'enddate' => $value->ENDDATE,
+                'milsestoneprogres' => $value->MILESTONE_PROGRESS,
                 'idticket' => $value->ID_TICKET,
-                'action' => ''
+                'desctitle' => $value->DESC_TITLE,
+                'ticketprogres' => $value->TICKET_PROGRESS,
+                'label' => $value->LABEL,
+                'tipe' => $value->TIPE,
+                'duedate' => $value->DUEDATE,
+                'usfullnm' => $value->USFULLNM,
+                'jobdesc' => $value->JOBDESC,
+                'picprogres' => $value->PIC_PROGRESS,
+                'idpic' => $value->ID_PIC,
+                'action' => ' 
+                <button class="btn btn-success btn-xs" id="btn-detail-card"
+                data-idpic="' . $card->ID_TICKET . '">Card</button>
+               
+                <button class="btn btn-primary btn-xs" id="detailmilestone"
+                >Detail</button>'
             ];
         }
         $final = [
             'aaData' => $result
         ];
         return APIRESPONSE::response('', $final);
-        // $this->template->load('layouts/Layouts', 'dashboard/V_milestone', $final);
+    }
 
-
-
-        // $data = $cek->num_rows();
-        // $this->data['komplen'] = $cek->result_array();
-        // print_r($data);
+    public function getPic()
+    {
+        $id_pic = $this->input->get('id_pic');
+        $final = [];
+        $result = [];
+        $query =  $this->card->getCard($id_pic);
+        // print_r($query);
         // die();
-        // if ($data > 0) {
-        // $this->data['pinjam'] = $this->db->query(
-        // "SELECT TOP 200 * FROM SDP_COMPLAIN_PIC WHERE ID_TICKET = '$id'"
-        // )->result_array();
+        $nomor = 0;
+        foreach ($query as $key => $value) {
+            $nomor++;
+            $result[] = [
+                'nomor' => $nomor,
+                'idticket' => $value->ID_TICKET,
+                'idcard' => $value->ID_CARD,
+                'idpic' => $value->ID_PIC,
+            ];
+        }
 
-        // print_r($this->data['pinjam']);
-        // die();
-        // } else {
-        // echo '<script>alert("DETAIL TIDAK DITEMUKAN");window.location="' . base_url('Project') . '"</script>';
-        // }
-        // } else {
-        // $data = $this->M_Admin->CountTableId('sdp_complain', 'ID_TICKET', $id);
-        // if ($data > 0) {
-        //     $this->data['pinjam'] = $this->db->query("SELECT * FROM sdp_complain WHERE ID_TICKET = '$id'")->row();
-        // } else {
-        //     echo '<script>alert("DETAIL TIDAK DITEMUKAN");window.location="' . base_url('transaksi') . '"</script>';
-        // }
-        // }
-        // $this->template->load('layouts/Layouts', 'dashboard/V_reportPIC', $this->data);
+        $final = [
+            'aaData' => $result
+        ];
+        return APIRESPONSE::response('', $final);
     }
 }
 

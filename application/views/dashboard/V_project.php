@@ -157,64 +157,33 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 col-12">
-                                    <div class="info-box">
-                                        <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">All Project</span>
-                                            <span class="info-box-number">13,648</span>
-                                        </div>
-                                        <!-- /.info-box-content -->
-                                    </div>
-                                    <!-- /.info-box -->
+                                <div class="table-responsive">
+                                    <table id="tbProject" class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th col width="5%">No.</th>
+                                                <th col width="25%">Project Name</th>
+                                                <th col width="8%">PIC</th>
+                                                <th col width="5%">Status</th>
+                                                <th>Progres</th>
+                                                <th col width="20%">Developer</th>
+                                                <th col width="5%">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Nama Project</th>
+                                                <th>PIC</th>
+                                                <th>Status</th>
+                                                <th>Progres</th>
+                                                <th>Developer</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
                                 </div>
-                                <div class="col-md-3 col-sm-6 col-12">
-                                    <div class="info-box">
-                                        <span class="info-box-icon bg-success"><i class="far fa-copy"></i></span>
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Finished Project</span>
-                                            <span class="info-box-number">13,648</span>
-                                        </div>
-                                        <!-- /.info-box-content -->
-                                    </div>
-                                    <!-- /.info-box -->
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-12">
-                                    <div class="info-box">
-                                        <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Open Project</span>
-                                            <span class="info-box-number">13,648</span>
-                                        </div>
-                                        <!-- /.info-box-content -->
-                                    </div>
-                                    <!-- /.info-box -->
-                                </div>
-                                <table id="tbProject" class="table table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th col width="5%">No.</th>
-                                            <th col width="25%">Nama Project</th>
-                                            <th col width="8%">PIC</th>
-                                            <th col width="5%">Status</th>
-                                            <th>Progres</th>
-                                            <th col width="20%">Developer</th>
-                                            <th col width="5%">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Nama Project</th>
-                                            <th>PIC</th>
-                                            <th>Status</th>
-                                            <th>Progres</th>
-                                            <th>Developer</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
                                 <!-- <div>
                   <a class="btn btn-sm btn-success" href="#" target="_blank" id="btn_export">Export Data</a>
                   <a class="btn btn-sm btn-primary" href="#" target="_blank" id="btn_export_lansia">Export Data Lansia</a>

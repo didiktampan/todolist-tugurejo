@@ -134,24 +134,24 @@
     })
     $(document).ready(function() {
 
-        $(".btn-modal").on('click', function() {
-            var id_ticket = $(this).data('id');
+        // $(".btn-modal").on('click', function() {
+        //     var id_ticket = $(this).data('id');
 
-            $.ajax({
-                url: '<?= base_url('Dashboard/get_tiket') ?>',
-                type: 'POST',
-                async: true,
-                dataType: 'HTML',
-                data: {
-                    id_ticket: id_ticket
-                },
-                success: function(response) {
-                    $("#table-modal").html(response);
-                }
+        //     $.ajax({
+        //         url: '<?= base_url('Dashboard/get_tiket') ?>',
+        //         type: 'POST',
+        //         async: true,
+        //         dataType: 'HTML',
+        //         data: {
+        //             id_ticket: id_ticket
+        //         },
+        //         success: function(response) {
+        //             $("#table-modal").html(response);
+        //         }
 
-            });
+        //     });
 
-        });
+        // });
     });
     $(document).ready(function() {
         $(".btn-modal").on('click', function() {

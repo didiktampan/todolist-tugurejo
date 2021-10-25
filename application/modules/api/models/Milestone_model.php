@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Project_model extends CI_Model
+class Milestone_model extends CI_Model
 {
 
     public function buatID()
@@ -31,21 +31,10 @@ class Project_model extends CI_Model
         return $data->result();
     }
 
-    public function getProject()
-    {
-        $data = $this->db->query("EXEC SP_SIMADUN_WEB_PROJECTLIST");
-        return $data->result();
-    }
     public function getMilestone($id)
     {
         $data = $this->db->query("EXEC SP_SIMADUN_WEB_PROJECT_TCKT @PROJECTID = '$id'");
         return $data->result();
-    }
-
-    public function getProjectdetail($projectid)
-    {
-        $data = $this->db->query("EXEC SP_SIMADUN_WEB_PROJECTDTL @PROJECTID = '$projectid'");
-        return $data->row();
     }
 
     public function updateBangsal($obj, $milestoneid)

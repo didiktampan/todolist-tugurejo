@@ -103,14 +103,8 @@ class Report extends CI_Controller
     {
 
         $id = $this->uri->segment(3);
-        // echo $id;
-        // return;
-        // $this->data['idbo'] = $this->session->userdata('ses_id');
-        // $id = $this->db->get('ID_TICKET');
-        // if ($this->session->userdata('TIPUSER') == 'DEV') {
         $cek = $this->db->get_where('SDP_COMPLAIN', [
             'ID_TICKET' => $id,
-            // 'USLOGNM' => $this->session->userdata('USLOGNM')
         ]);
 
         $data = $cek->num_rows();
@@ -121,20 +115,9 @@ class Report extends CI_Controller
             $this->data['pinjam'] = $this->db->query(
                 "SELECT TOP 200 * FROM SDP_COMPLAIN_PIC WHERE ID_TICKET = '$id'"
             )->result_array();
-
-            // print_r($this->data['pinjam']);
-            // die();
         } else {
             echo '<script>alert("DETAIL TIDAK DITEMUKAN");window.location="' . base_url('Report') . '"</script>';
         }
-        // } else {
-        // $data = $this->M_Admin->CountTableId('sdp_complain', 'ID_TICKET', $id);
-        // if ($data > 0) {
-        //     $this->data['pinjam'] = $this->db->query("SELECT * FROM sdp_complain WHERE ID_TICKET = '$id'")->row();
-        // } else {
-        //     echo '<script>alert("DETAIL TIDAK DITEMUKAN");window.location="' . base_url('transaksi') . '"</script>';
-        // }
-        // }
         $this->template->load('layouts/Layouts', 'dashboard/V_reportPIC', $this->data);
     }
 
