@@ -20,8 +20,6 @@ class Milestone extends CI_Controller
         $data['id'] = $this->input->get('id');
         $data['token'] = $token = AUTHORIZATION::private_token();
         $this->template->load('layouts/Layouts', 'dashboard/V_milestone', $data);
-        //print_r($data);
-        // die()
     }
 
     public function detailpinjam()
@@ -30,10 +28,23 @@ class Milestone extends CI_Controller
         $final = [];
         $result = [];
         $data =  $this->milestone->getMilestone($id);
+        // $card = $this->card->getPic($id_pic);
+        // echo json_encode($card);
+        // return;
         $nomor = 0;
         foreach ($data as $key => $value) {
             $nomor++;
-            $card = $this->card->getPic($value->ID_PIC);
+
+            // echo json_encode($card[0]->ID_TICKET);
+            // return;
+            // if ($value->ID_TICKET === 'Open') {
+            //     $statusproject = '<span class="badge badge-primary">' . $value->PROJECTSTS . '</span>';
+            // } else if ($value->PROJECTSTS === 'Selesai') {
+            //     $statusproject = '<span class="badge badge-success">' . $value->PROJECTSTS . '</span>';
+            // } else {
+            //     $statusproject = '<span class="badge badge-success">' . $value->PROJECTSTS . '</span>';
+            // }
+
             $result[] = [
                 'nomor' => $nomor,
                 'milestonename' => $value->MILESTONENAME,
@@ -52,8 +63,9 @@ class Milestone extends CI_Controller
                 'idpic' => $value->ID_PIC,
                 'action' => ' 
                 <button class="btn btn-success btn-xs" id="btn-detail-card"
-                data-idpic="' . $card->ID_TICKET . '">Card</button>
-               
+                data-idpic="' . $value->ID_PIC . '">Card</button>
+                <a  href="' . base_url('Card/' . '?id=' . $value->ID_PIC) . '" class="btn btn-success btn-xs" title="detail milestone">
+                Card2</a>
                 <button class="btn btn-primary btn-xs" id="detailmilestone"
                 >Detail</button>'
             ];
@@ -66,10 +78,13 @@ class Milestone extends CI_Controller
 
     public function getPic()
     {
-        $id_pic = $this->input->get('id_pic');
+        // $id_pic = $this->input->get('id_pic');
+        $id_pic = $this->uri->segment(4);
         $final = [];
         $result = [];
         $query =  $this->card->getCard($id_pic);
+        echo json_encode($query);
+        return;
         // print_r($query);
         // die();
         $nomor = 0;
@@ -79,7 +94,7 @@ class Milestone extends CI_Controller
                 'nomor' => $nomor,
                 'idticket' => $value->ID_TICKET,
                 'idcard' => $value->ID_CARD,
-                'idpic' => $value->ID_PIC,
+                // 'idpic' => $value->ID_PIC,
             ];
         }
 

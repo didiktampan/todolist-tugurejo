@@ -8,10 +8,8 @@
                                     $projectname = $this->session->userdata('projectname');
                                     $projectid = $this->session->userdata('projectid');
                                     echo $projectname;
-                                    // echo $id_pic;
                                     ?></h1>
                 </div>
-                <input type="hidden" value="<?php echo $id_pic ?>" id="id_card" name="id_card">
                 <input type="hidden" value="<?php echo $id ?>" id="id_project" name="id_project">
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -90,30 +88,37 @@
                                     <thead>
                                         <tr>
                                             <th>No.</th>
-                                            <th>Milestone Name</th>
+                                            <th>ID Ticket</th>
                                             <th>Description</th>
+                                            <th>Complain</th>
                                             <th>Progress</th>
-                                            <th col width="10%">Due Date</th>
-                                            <th>Developer</th>
-                                            <th col width="5%">Action</th>
+                                            <th>ID Card</th>
+                                            <th>Title Card</th>
+                                            <th>Status</th>
+                                            <th>ID Skp</th>
+                                            <th>Detail Skp</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
-
                                     <tfoot>
                                         <tr>
                                             <th>No.</th>
-                                            <th>Milestone Name</th>
+                                            <th>ID Ticket</th>
                                             <th>Description</th>
+                                            <th>Complain</th>
                                             <th>Progress</th>
-                                            <th>Due Date</th>
-                                            <th>Developer</th>
+                                            <th>ID Card</th>
+                                            <th>Title Card</th>
+                                            <th>Status</th>
+                                            <th>ID Skp</th>
+                                            <th>Detail Skp</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
                                 </table>
                                 <div>
-                                    <a class="btn btn-sm btn-primary" href="<?php echo site_url('Project') ?>">Back</a>
+                                    <a class="btn btn-sm btn-primary" href="<?php echo site_url('Milestone') ?>">Back</a>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -187,26 +192,38 @@
                 "bserverSide": true,
                 "scrollX": true,
                 "scrollY": true,
-                "sAjaxSource": '<?php echo base_url('Milestone/detailpinjam') ?>/' + id,
+                "sAjaxSource": '<?php echo base_url('Card/detailCard') ?>/' + id,
                 "aoColumns": [{
                         "mData": "nomor",
                         className: "text-center"
                     },
 
                     {
-                        "mData": "milestonename"
+                        "mData": "idticket"
                     },
                     {
                         "mData": "desctitle"
                     },
                     {
-                        "mData": "milsestoneprogres"
+                        "mData": "desccomplain"
                     },
                     {
-                        "mData": "duedate"
+                        "mData": "progres"
                     },
                     {
-                        "mData": "usfullnm"
+                        "mData": "idcard"
+                    },
+                    {
+                        "mData": "titlecard"
+                    },
+                    {
+                        "mData": "status"
+                    },
+                    {
+                        "mData": "idskp"
+                    },
+                    {
+                        "mData": "skpdetail"
                     },
                     {
                         "mData": "action"
@@ -257,8 +274,7 @@
             // $('#projectid').select2("val", "");
             // $('#modalBangsal').modal('show');
 
-            const showTable = (awal, akhir, id_pic) => {
-                const idpic = $(this).data('id_pic');
+            const showTable = (awal, akhir, id) => {
 
                 let tableBangsal2 = $('#tbProject2').DataTable({
 
@@ -270,7 +286,7 @@
                     "bserverSide": true,
                     "scrollX": true,
                     "scrollY": true,
-                    "sAjaxSource": '<?php echo base_url('Milestone/getPic') ?>/' + id_pic,
+                    "sAjaxSource": '<?php echo base_url('Milestone/getPic') ?>/' + id,
                     "aoColumns": [{
                             "mData": "nomor",
                             className: "text-center"
