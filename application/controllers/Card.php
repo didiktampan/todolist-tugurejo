@@ -17,11 +17,11 @@ class Card extends CI_Controller
     public function index()
     {
         // $data['id_pic'] = $this->input->get('id_pic');
-        $data['id'] = $this->input->get('id');
+        $data['idd'] = $this->input->get('idd');
         $data['token'] = $token = AUTHORIZATION::private_token();
-        $this->template->load('layouts/Layouts', 'dashboard/V_card', $data);
-        //print_r($data);
-        // die()
+        $this->template->load('layouts/Layouts', 'dashboard/V_milestone', $data);
+        // echo json_encode($data['id_pic']);
+        // return;
     }
 
     public function detailCard()
@@ -54,31 +54,32 @@ class Card extends CI_Controller
         return APIRESPONSE::response('', $final);
     }
 
-    // public function getPic()
-    // {
-    //     // $id_pic = $this->input->get('id_pic');
-    //     $id_ticket = $this->uri->segment(3);
-    //     $final = [];
-    //     $result = [];
-    //     $query =  $this->card->getCard($id_ticket);
-    //     // print_r($query);
-    //     // die();
-    //     $nomor = 0;
-    //     foreach ($query as $key => $value) {
-    //         $nomor++;
-    //         $result[] = [
-    //             'nomor' => $nomor,
-    //             'idticket' => $value->ID_TICKET,
-    //             'idcard' => $value->ID_CARD,
-    //             'idpic' => $value->ID_PIC,
-    //         ];
-    //     }
 
-    //     $final = [
-    //         'aaData' => $result
-    //     ];
-    //     return APIRESPONSE::response('', $final);
-    // }
+    public function getPic()
+    {
+        $idd = $this->uri->segment(3);
+        $final = [];
+        $result = [];
+        $query =  $this->card->getCard($idd);
+        echo json_encode($query);
+        return;
+        // print_r($query);
+        // die();
+        $nomor = 0;
+        foreach ($query as $key => $value) {
+            $nomor++;
+            $result[] = [
+                'nomor' => $nomor,
+                'idticket' => $value->ID_TICKET,
+                'idcard' => $value->ID_CARD,
+            ];
+        }
+
+        $final = [
+            'aaData' => $result
+        ];
+        return APIRESPONSE::response('', $final);
+    }
 }
 
 /* End of file Bangsal.php */

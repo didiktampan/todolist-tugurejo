@@ -161,13 +161,13 @@
                                     <table id="tbProject" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th col width="5%">No.</th>
-                                                <th col width="25%">Project Name</th>
-                                                <th col width="8%">PIC</th>
-                                                <th col width="5%">Status</th>
-                                                <th>Progres</th>
-                                                <th col width="20%">Developer</th>
-                                                <th col width="5%">Action</th>
+                                                <th>No.</th>
+                                                <th>Project Name</th>
+                                                <th>PIC</th>
+                                                <th>Status</th>
+                                                <th col width="25%">Progres</th>
+                                                <th>Developer</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>

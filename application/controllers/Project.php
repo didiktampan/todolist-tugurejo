@@ -61,30 +61,45 @@ class Project extends CI_Controller
 
             $value->PROGRESS === 100.00;
             if ($value->PROGRESS > 75.00) {
-                $progres = '<div class="progress progress-sm">
-                            <div class="progress-bar bg-success" style="width:' . $value->PROGRESS . '%">  
+                $progres = '<div class="progress-group">Complete Progress
+                        <div class="progress progress-sm">
+                        <div class="progress-bar bg-success" style="width:' . $value->PROGRESS . '%"></div>  
                         </div>
-                    </div>';
+                        <span class="float-right">' . $value->PROGRESS . '/100.00</span>
+                    </div>
+                    ';
             } else if ($value->PROGRESS > 50.00) {
-                $progres = '<div class="progress progress-sm">
-                            <div class="progress-bar bg-primary" style="width:' . $value->PROGRESS . '%">
+                $progres = '<div class="progress-group">Complete Progress
+                        <div class="progress progress-sm">
+                        <div class="progress-bar bg-primary" style="width:' . $value->PROGRESS . '%"></div>  
                         </div>
-                    </div>';
+                        <span class="float-right">' . $value->PROGRESS . '/100.00</span>
+                    </div>
+                    ';
             } else if ($value->PROGRESS > 25.00) {
-                $progres = '<div class="progress progress-sm">
-                            <div class="progress-bar bg-primary" style="width:' . $value->PROGRESS . '%">
+                $progres = '<div class="progress-group">Complete Progress
+                        <div class="progress progress-sm">
+                        <div class="progress-bar bg-warning" style="width:' . $value->PROGRESS . '%"></div>  
                         </div>
-                    </div>';
+                        <span class="float-right">' . $value->PROGRESS . '/100.00</span>
+                    </div>
+                    ';
             } else if ($value->PROGRESS > 0) {
-                $progres = '<div class="progress progress-sm">
-                            <div class="progress-bar bg-primary" style="width:' . $value->PROGRESS . '%">
-                        </div>
-                    </div>';
+                $progres = '<div class="progress-group">Complete Progress
+                <div class="progress progress-sm">
+                <div class="progress-bar bg-danger" style="width:' . $value->PROGRESS . '%"></div>  
+                </div>
+                <span class="float-right">' . $value->PROGRESS . '/100.00</span>
+            </div>
+            ';
             } else if ($value->PROGRESS < 1) {
-                $progres = '<div class="progress progress-sm">
-                            <div class="progress-bar bg-danger" style="width:0%">
+                $progres = '<div class="progress-group">Complete Progress
+                        <div class="progress progress-sm">
+                        <div class="progress-bar bg-success" style="width:' . $value->PROGRESS . '%"></div>  
                         </div>
-                    </div>';
+                        <span class="float-right">' . $value->PROGRESS . '/100.00</span>
+                    </div>
+                    ';
             }
 
             $value->STARTDATE === $tanggalmulai = date('d/m/Y', strtotime($value->STARTDATE));

@@ -19,10 +19,10 @@ class Card_model extends CI_Model
         return $data->result();
     }
 
-    public function getCard($id_pic)
+    public function getCard($idd)
     {
 
-        $data = $this->db->query("EXEC SP_SIMADUN_WEB_PROJECT_PICDTL @ID_PIC = '$id_pic'");
+        $data = $this->db->query("EXEC SP_SIMADUN_WEB_PROJECT_PICDTL @ID_PIC = '$idd'");
         return $data->result();
     }
 

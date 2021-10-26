@@ -8,10 +8,8 @@
                                     $projectname = $this->session->userdata('projectname');
                                     $projectid = $this->session->userdata('projectid');
                                     echo $projectname;
-                                    // echo $id_pic;
                                     ?></h1>
                 </div>
-                <input type="hidden" value="<?php echo $id_pic ?>" id="id_card" name="id_card">
                 <input type="hidden" value="<?php echo $id ?>" id="id_project" name="id_project">
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -39,10 +37,13 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Milestone Name</th>
+                                    <th>No Card</th>
                                     <th>Description</th>
-                                    <th col width="10%">Due Date</th>
-
+                                    <th>Complain</th>
+                                    <th col width="25%">Progress</th>
+                                    <th>Title Card</th>
+                                    <th>Status</th>
+                                    <th>SKP</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -50,10 +51,13 @@
                             <tfoot>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Milestone Name</th>
+                                    <th>No Card</th>
                                     <th>Description</th>
-                                    <th>Due Date</th>
-
+                                    <th>Complain</th>
+                                    <th>Progress</th>
+                                    <th>Title Card</th>
+                                    <th>Status</th>
+                                    <th>SKP</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -72,6 +76,108 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+
+    <!-- modal terbaru -->
+    <div class="modal fade show" id="modalDetailMilestone" aria-modal="true">
+        <div class="modal-dialog modal-lg" style="max-width:1200px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Detail Milestone</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="formVaksinasi">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card card-primary">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Detail Milestone</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Developer :</label>
+                                                <input type="text" placeholder="Empty" name="usfullnm" id="usfullnm" autocomplete="off" class="form-control" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label>ID Milestone :</label>
+                                                <input type="text" placeholder="ID Milestone" name="idticket_edt" id="idticket_edt" autocomplete="off" class="form-control" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Milestone Name :</label>
+                                                <input type="text" placeholder="Empty" name="milestonename" id="milestonename" autocomplete="off" class="form-control" readonly>
+                                                <!-- <input type="hidden" name="projectid_edt" id=""> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Title Description :</label>
+                                                <textarea class="form-control" type="text" aria-label="With textarea" placeholder="Empty" name="desctitle" id="desctitle" autocomplete="off" class="form-control" readonly></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Job Description :</label>
+                                                <textarea class="form-control" type="text" aria-label="With textarea" placeholder="Empty" name="jobdesc" id="jobdesc" autocomplete="off" class="form-control" readonly></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card card-primary">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Progres</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Start Date :</label>
+                                                        <input type="text" placeholder="Empty" name="startdate" id="startdate" autocomplete="off" class="form-control" readonly>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>End Date :</label>
+                                                        <input type="text" placeholder="Empty" name="enddate" id="enddate" autocomplete="off" class="form-control" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Developer Progress :</label>
+                                                <input type="text" placeholder="Empty" name="picprogres" id="picprogres" autocomplete="off" class="form-control" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Due Date :</label>
+                                                <input type="text" placeholder="Empty" name="duedate" id="duedate" autocomplete="off" class="form-control" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer text-right">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-primary" id="btn-update">Save changes</button> -->
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
 
 
     <!-- Main content -->
@@ -92,21 +198,20 @@
                                             <th>No.</th>
                                             <th>Milestone Name</th>
                                             <th>Description</th>
-                                            <th>Progress</th>
-                                            <th col width="10%">Due Date</th>
+                                            <th col width="25%">Progress</th>
+                                            <th>Job Description</th>
                                             <th>Developer</th>
-                                            <th col width="5%">Action</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
-
                                     <tfoot>
                                         <tr>
                                             <th>No.</th>
                                             <th>Milestone Name</th>
                                             <th>Description</th>
                                             <th>Progress</th>
-                                            <th>Due Date</th>
+                                            <th>Job Description</th>
                                             <th>Developer</th>
                                             <th>Action</th>
                                         </tr>
@@ -203,7 +308,7 @@
                         "mData": "milsestoneprogres"
                     },
                     {
-                        "mData": "duedate"
+                        "mData": "jobdesc"
                     },
                     {
                         "mData": "usfullnm"
@@ -217,48 +322,43 @@
         }
         showTable(awal, akhir, id_project)
 
-        const ManageBangsal = (url, dataObj) => {
-            $.ajax({
-                method: 'POST',
-                url: url,
-                dataType: 'JSON',
-                headers: {
-                    'X-token': token
-                },
-                data: dataObj,
-                success: function(response) {
-                    response.response === true && swal('Sukses', response.metadata.message, 'success');
-                    response.response === false && swal('Gagal', response.metadata.message, 'info');
-                    response.response === true && $('#modalBangsal').modal('hide');
-                    response.response === true && $('#modalAdd').modal('hide');
-
-                },
-                error: function(error) {
-                    swal('Maaf', 'server bermasalah', 'error')
-                }
-            })
-        }
-
-        $('#btn-tambah').on('click', function() {
-            $('#title').html('Tambah Milestone')
-            $('#milestoneid_edt').val('');
-            $('#milestonename').val('');
-            $('#modalAdd').modal('show');
+        $('#tbProject').on('click', '#btn-detail', function() {
+            const milestonename = $(this).data('milestonename');
+            const startdate = $(this).data('startdate');
+            const enddate = $(this).data('enddate');
+            const milestoneprogres = $(this).data('milestoneprogres');
+            const idticket = $(this).data('idticket');
+            const desctitle = $(this).data('desctitle');
+            const ticketprogres = $(this).data('ticketprogres');
+            const label = $(this).data('label');
+            const tipe = $(this).data('tipe');
+            const usfullnm = $(this).data('usfullnm');
+            const jobdesc = $(this).data('jobdesc');
+            const picprogres = $(this).data('picprogres');
+            const idpic = $(this).data('idpic');
+            const duedate = $(this).data('duedate');
+            $('#title').html('Detail Project')
+            $('#idticket_edt').val(idticket);
+            $('#milestonename').val(milestonename);
+            $('#startdate').val(startdate);
+            $('#enddate').val(enddate);
+            $('#milestoneprogres').val(milestoneprogres);
+            $('#desctitle').val(desctitle);
+            $('#ticketprogres').val(ticketprogres);
+            $('#label').val(label);
+            $('#tipe').val(tipe);
+            $('#usfullnm').val(usfullnm);
+            $('#jobdesc').val(jobdesc);
+            $('#picprogres').val(picprogres);
+            $('#idpic').val(idpic);
+            $('#duedate').val(duedate);
+            // $('#projectid').select2("val", "");
+            $('#modalDetailMilestone').modal('show');
         })
 
         $('#tbProject').on('click', '#btn-detail-card', function() {
-            // const milestoneid = $(this).data('milestoneid');
-            // const milestonename = $(this).data('milestonename');
-            // const projectid = $(this).data('projectid');
-            // const projectname = $(this).data('projectname');
-            // $('#title').html('Edit Milestone')
-            // $('#milestoneid_edt').val(milestoneid);
-            // $('#milestonename').val(milestonename);
-            // $('#projectid').select2("val", "");
-            // $('#modalBangsal').modal('show');
-
-            const showTable = (awal, akhir, id_pic) => {
-                const idpic = $(this).data('id_pic');
+            const showTable = (awal, akhir, id) => {
+                const idpic = $(this).data('idpic');
 
                 let tableBangsal2 = $('#tbProject2').DataTable({
 
@@ -270,22 +370,32 @@
                     "bserverSide": true,
                     "scrollX": true,
                     "scrollY": true,
-                    "sAjaxSource": '<?php echo base_url('Milestone/getPic') ?>/' + id_pic,
+                    "sAjaxSource": '<?php echo base_url('Milestone/getPic') ?>?id_pic=' + idpic,
                     "aoColumns": [{
                             "mData": "nomor",
                             className: "text-center"
                         },
-
-                        {
-                            "mData": "idticket"
-                        },
-
                         {
                             "mData": "idcard"
                         },
                         {
-                            "mData": "idpic"
-                        }
+                            "mData": "desctitle"
+                        },
+                        {
+                            "mData": "desccomplain"
+                        },
+                        {
+                            "mData": "progres"
+                        },
+                        {
+                            "mData": "titlecard"
+                        },
+                        {
+                            "mData": "status"
+                        },
+                        {
+                            "mData": "skpdetail"
+                        },
                     ],
                     "fixedColumns": false
                 });
